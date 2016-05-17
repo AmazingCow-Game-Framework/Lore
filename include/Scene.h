@@ -10,8 +10,8 @@ class Scene
 {
     // CTOR / DTOR //
 public:
-    Scene() {}
-    virtual ~Scene() {}
+    Scene()          { /* Empty */ }
+    virtual ~Scene() { /* Empty */ }
 
 
     // Load / Unload //
