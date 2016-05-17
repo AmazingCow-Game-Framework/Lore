@@ -45,7 +45,7 @@ public:
 
 
     //Origin
-    void setOrigin (const Vector2 &point);
+    void setOrigin (const Vector2 &origin);
     void setOrigin (float x, float y);
     void setOriginX(float x);
     void setOriginY(float y);

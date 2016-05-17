@@ -100,9 +100,9 @@ float ITransformable::getScaleY() const
 
 
 //Origin
-void ITransformable::setOrigin(const Vector2 &point)
+void ITransformable::setOrigin(const Vector2 &origin)
 {
-    m_origin = point;
+    m_origin = origin;
 }
 void ITransformable::setOrigin(float x, float y)
 {
