@@ -1,6 +1,6 @@
 
 //Header
-#include "../include/GameHelpers.h"
+#include "../include/SDLHelpers.h"
 //Lore
 #include "../include/WindowManager.h"
 
@@ -23,6 +23,13 @@ SDL_Color make_color(int r, int g, int b, int a /* = 255 */)
 {
     //COWTODO: Check errors.
     return (SDL_Color){r, g, b, a};
+}
+
+SDL_Texture* load_texture_from_file(const std::string &filename)
+{
+    //COWTODO: Check errors.
+    auto surface = IMG_Load(filename.c_str());
+    return make_texture_free(surface);
 }
 
 SDL_Texture* make_texture_free(SDL_Surface *surface)
