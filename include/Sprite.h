@@ -12,20 +12,13 @@ NS_LORE_BEGIN
 
 class Sprite : public IDrawable, public ITransformable
 {
-    // Enums / Constants //
+    // Typedef //
 public:
-    enum class Flip {
-        None = 0,
-        X    = 1,
-        Y    = 2,
-        Both = 3
-    };
-
+    typedef std::shared_ptr<Sprite> SPtr;
 
     // CTOR //
 public:
     Sprite();
-    Sprite(const Texture &texture);
     Sprite(const std::string &filename,
            const Rectangle &srcRect = Rectangle::Empty());
 
@@ -35,30 +28,33 @@ public:
     virtual void draw() override;
 
     //Flip
-    void setFlip (Flip flip);
+    void setFlip (Texture::Flip flip);
     void setFlipX(bool flip);
     void setFlipY(bool flip);
 
-    Flip getFlip () const;
-    bool getFlipX() const;
-    bool getFlipY() const;
+    Texture::Flip getFlip () const;
+    bool          getFlipX() const;
+    bool          getFlipY() const;
 
     //Texture
-    const Texture& getTexture() const;
-    void setTexture(const Texture &texture);
+    Texture::SPtr getTexture() const;
+    void setTexture(Texture::SPtr texture,
+                    const Rectangle &srcRect = Rectangle::Empty());
+
     void loadTexture(const std::string &filename,
                      const Rectangle &srcRect = Rectangle::Empty());
 
-    //BoundingBox
-    const Rectangle& getBoundingBox() const;
+    void setSourceRectangle(const Rectangle &srcRect = Rectangle::Empty());
+    const Rectangle& getSourceRectangle() const;
+
 
     // iVars //
 private:
-    Texture m_texture;
+    //Texture Stuff.
+    Texture::SPtr m_pTexture;
+    Rectangle     m_textureRect;
+    Texture::Flip m_flip;
 
-    SDL_Rect  m_srcRect;
-    SDL_Rect  m_dstRect;
-    Flip      m_flip;
 };
 
 NS_LORE_END
