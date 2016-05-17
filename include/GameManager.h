@@ -12,7 +12,7 @@ class GameManager
     // Singleton //
 public:
     COREGAME_SINGLETON_OF(GameManager);
-    COREGAME_DISALLOW_COPY_MOVE_ASSIGN(GameManager);
+    COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(GameManager);
 private:
     GameManager() {};
 
