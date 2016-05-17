@@ -1,10 +1,18 @@
 #ifndef __Lore_include_Vector2_h__
 #define __Lore_include_Vector2_h__
 
+//Lore
+#include "Lore_Utils.h"
+
 NS_LORE_BEGIN
 
 class Vector2
 {
+    // Static Methods //
+public:
+    static const Vector2& Zero();
+    static const Vector2& One ();
+
     // CTOR / DTOR //
 public:
     Vector2();
@@ -19,11 +27,16 @@ public:
     void  setY(float y);
     float getY() const;
 
+    // Operators //
+public:
     //COWTODO: Add the operators.
+    friend bool operator ==(const Vector2 &lhs, const Vector2 &rhs);
+    friend bool operator !=(const Vector2 &lhs, const Vector2 &rhs);
+
 
     // iVars //
 private:
-    float x, y;
+    float m_x, m_y;
 };
 
 NS_LORE_END
