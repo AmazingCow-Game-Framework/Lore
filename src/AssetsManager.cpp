@@ -3,6 +3,7 @@
 #include "../include/AssetsManager.h"
 //Lore
 #include "../include/WindowManager.h"
+#include "../include/SDLHelpers.h"
 
 //Usigns
 USING_NS_LORE;
@@ -16,6 +17,7 @@ void AssetsManager::initialize(const std::string& searchPath)
         m_searchPath += "/";
 
     //COWTODO: Check errors.
+    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
     TTF_Init();
 }
 
@@ -47,14 +49,24 @@ Font::SPtr AssetsManager::getFont(const std::string &filename, int size)
 // Private Functions //
 Texture::SPtr AssetsManager::loadTexture(const std::string &filename)
 {
-    auto texture = std::make_shared<Texture>(fullpath(filename));
+    auto sdlTexture = SDLHelpers::load_texture_from_file(fullpath(filename));
+    auto texture    = std::make_shared<Texture>(sdlTexture);
+
     m_texturesMap[filename] = texture;
+
     return texture;
 }
 
 Font::SPtr AssetsManager::loadFont(const std::string &filename,
                                                  int size)
 {
+    auto sdlFont   = SDLHelpers::load_font_from_file(fullpath(filename), size);
+    auto font      = std::make_shared<Font>(sdlFont);
+    auto fontValue = std::make_pair(filename, size);
+
+    m_fontsMap[fontValue] = font;
+
+    return font;
 }
 
 std::string AssetsManager::fullpath(const std::string &filename)
