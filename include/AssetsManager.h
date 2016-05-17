@@ -18,15 +18,15 @@ class AssetsManager
     // Constants / Enums / Typdefs //
 private:
     //Texture
-    typedef std::map<std::string, Texture> TextureMap;
+    typedef std::map<std::string, Texture::SPtr> TextureMap;
     //Font
     typedef std::pair<std::string, int> FontValue;
-    typedef std::map<FontValue, Font> FontMap;
+    typedef std::map<FontValue, Font::SPtr>   FontMap;
 
     // Singleton //
 public:
     COREGAME_SINGLETON_OF(AssetsManager);
-    COREGAME_DISALLOW_COPY_MOVE_ASSIGN(AssetsManager);
+    COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(AssetsManager);
 private:
     AssetsManager() {};
 
@@ -37,13 +37,13 @@ public:
 
     // Public Functions //
 public:
-    const Texture& getTexture(const std::string &filename);
-    const Font&    getFont   (const std::string &filename, int size);
+    Texture::SPtr getTexture(const std::string &filename);
+    Font::SPtr    getFont   (const std::string &filename, int size);
 
     // Private Functions //
 private:
-    const Texture& loadTexture(const std::string &filename);
-    const Font&    loadFont(const std::string &filename, int size);
+    Texture::SPtr loadTexture(const std::string &filename);
+    Font::SPtr    loadFont(const std::string &filename, int size);
 
     std::string fullpath(const std::string &filename);
 
