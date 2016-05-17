@@ -29,7 +29,7 @@ public:
 
     // Draw //
 public:
-    void clear(const SDL_Color &color);
+    void clear();
     void render();
 
 
@@ -42,6 +42,7 @@ public:
     int getWindowWidth () const;
     int getWindowHeight() const;
 
+    void setClearColor(const SDL_Color &color);
 
     // iVars //
 private:

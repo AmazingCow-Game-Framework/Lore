@@ -31,6 +31,8 @@ void WindowManager::initialize(const std::string &caption,
 
     //Renderer
     m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, rendererFlags);
+
+    setClearColor({0, 0, 0}); //Black.
 }
 
 void WindowManager::shutdown()
@@ -40,9 +42,8 @@ void WindowManager::shutdown()
 }
 
 // Draw //
-void WindowManager::clear(const SDL_Color &color)
+void WindowManager::clear()
 {
-    SDL_SetRenderDrawColor(m_pRenderer, color.r, color.g, color.b, 255);
     SDL_RenderClear(m_pRenderer);
 }
 
@@ -75,4 +76,12 @@ int WindowManager::getWindowHeight() const
     return m_windowHeight;
 }
 
+void WindowManager::setClearColor(const SDL_Color &color)
+{
+    SDL_SetRenderDrawColor(m_pRenderer,
+                           color.r,
+                           color.g,
+                           color.b,
+                           255);
 
+}
