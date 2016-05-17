@@ -8,6 +8,9 @@
 
 //std
 #include <memory>
+#include <iostream>
+using namespace std;
+
 //SDL
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -15,5 +18,6 @@
 //AmazingCow
 #include "CoreGame.h"
 #include "CoreRandom.h"
+#include "CoreClock.h"
 
 #endif // __Lore_include_Lore_Utils_h__ //
