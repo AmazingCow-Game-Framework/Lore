@@ -13,7 +13,7 @@ class WindowManager
     // Singleton //
 public:
     COREGAME_SINGLETON_OF(WindowManager);
-    COREGAME_DISALLOW_COPY_MOVE_ASSIGN(WindowManager);
+    COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(WindowManager);
 private:
     WindowManager() {};
 
