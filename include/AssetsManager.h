@@ -7,7 +7,9 @@
 #include <map>
 #include <utility>
 //Lore
-#include "GameCommon.h"
+#include "Lore_Utils.h"
+#include "Texture.h"
+#include "Font.h"
 
 NS_LORE_BEGIN
 
@@ -16,10 +18,10 @@ class AssetsManager
     // Constants / Enums / Typdefs //
 private:
     //Texture
-    typedef std::map<std::string, SDL_Texture*> TextureMap;
+    typedef std::map<std::string, Texture> TextureMap;
     //Font
     typedef std::pair<std::string, int> FontValue;
-    typedef std::map<FontValue, TTF_Font*> FontMap;
+    typedef std::map<FontValue, Font> FontMap;
 
     // Singleton //
 public:
@@ -35,13 +37,13 @@ public:
 
     // Public Functions //
 public:
-    SDL_Texture* getTexture(const std::string &filename);
-    TTF_Font*    getFont   (const std::string &filename, int size);
+    const Texture& getTexture(const std::string &filename);
+    const Font&    getFont   (const std::string &filename, int size);
 
     // Private Functions //
 private:
-    SDL_Texture* loadTexture(const std::string &filename);
-    TTF_Font*    loadFont(const std::string &filename, int size);
+    const Texture& loadTexture(const std::string &filename);
+    const Font&    loadFont(const std::string &filename, int size);
 
     std::string fullpath(const std::string &filename);
 

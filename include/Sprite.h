@@ -4,29 +4,35 @@
 //std
 #include <string>
 //Lore
-#include "GameCommon.h"
+#include "IDrawable.h"
+#include "ITransformable.h"
+#include "Texture.h"
 
 NS_LORE_BEGIN
 
-class Sprite
+class Sprite : public IDrawable, public ITransformable
 {
     // Enums / Constants //
 public:
-    enum class Flip { None = 0, X = 1, Y = 2, Both = 3 };
+    enum class Flip {
+        None = 0,
+        X    = 1,
+        Y    = 2,
+        Both = 3
+    };
 
 
     // CTOR //
 public:
     Sprite();
-    Sprite(const std::string &filename);
-    Sprite(SDL_Texture *texture);
+    Sprite(const Texture &texture);
+    Sprite(const std::string &filename,
+           const Rectangle &srcRect = Rectangle::Empty());
 
 
     // Public Methods //
 public:
-    void draw();
-    void draw(const SDL_Point &position);
-    void setSourceRect(const SDL_Rect &rect);
+    virtual void draw() override;
 
     //Flip
     void setFlip (Flip flip);
@@ -38,16 +44,17 @@ public:
     bool getFlipY() const;
 
     //Texture
-    SDL_Texture* getTexture() const;
-    void setTexture(SDL_Texture *texture);
-    void loadTexture(const std::string &filename);
+    const Texture& getTexture() const;
+    void setTexture(const Texture &texture);
+    void loadTexture(const std::string &filename,
+                     const Rectangle &srcRect = Rectangle::Empty());
 
     //BoundingBox
-    const SDL_Rect& getBoundingBox() const;
+    const Rectangle& getBoundingBox() const;
 
     // iVars //
 private:
-    SDL_Texture *m_pTexture;
+    Texture m_texture;
 
     SDL_Rect  m_srcRect;
     SDL_Rect  m_dstRect;

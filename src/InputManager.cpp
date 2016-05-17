@@ -1,6 +1,6 @@
 
 //Header
-#include "InputManager.h"
+#include "../include/InputManager.h"
 //std
 #include <cstring>
 

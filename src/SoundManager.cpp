@@ -1,6 +1,6 @@
 
 //Header
-#include "SoundManager.h"
+#include "../include/SoundManager.h"
 
 //Usings
 USING_NS_LORE

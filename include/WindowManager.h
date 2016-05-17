@@ -3,7 +3,8 @@
 #define __Lore_include_WindowManager_h__
 
 //Lore
-#include "GameCommon.h"
+#include "Lore_Utils.h"
+
 
 NS_LORE_BEGIN
 

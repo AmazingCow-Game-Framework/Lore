@@ -2,7 +2,7 @@
 #define __Lore_include_Scene_h__
 
 //Lore
-#include "GameCommon.h"
+#include "Lore_Utils.h"
 
 NS_LORE_BEGIN
 
@@ -20,7 +20,7 @@ public:
     virtual void unload() { /* Empty */ }
 
 
-    // Update / Draw // Handle Events //
+    // Update / Draw / Handle Events //
 public:
     virtual void update(float dt)
     { /* Empty */ }

@@ -1,9 +1,9 @@
 
 //Header
-#include "GameManager.h"
+#include "../include/GameManager.h"
 //Lore
-#include "WindowManager.h"
-#include "InputManager.h"
+#include "../include/WindowManager.h"
+#include "../include/InputManager.h"
 
 //Usings
 USING_NS_LORE;

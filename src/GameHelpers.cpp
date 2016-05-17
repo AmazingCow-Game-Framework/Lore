@@ -1,8 +1,8 @@
 
 //Header
-#include "GameHelpers.h"
+#include "../include/GameHelpers.h"
 //Lore
-#include "WindowManager.h"
+#include "../include/WindowManager.h"
 
 //Usings
 USING_NS_LORE

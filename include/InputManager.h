@@ -2,7 +2,7 @@
 #define __Lore_include_InputManager_h__
 
 //Lore
-#include "GameCommon.h"
+#include "Lore_Utils.h"
 #include "Scene.h"
 
 NS_LORE_BEGIN
