@@ -4,3 +4,6 @@
 [submodule "lib/CoreRandom"]
 	path = lib/CoreRandom
 	url = https://www.github.com/AmazingCow-Game-Core/CoreRandom
+[submodule "lib/CoreClock"]
+	path = lib/CoreClock
+	url = https://www.github.com/AmazingCow-Game-Core/CoreClock
