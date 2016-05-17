@@ -11,6 +11,7 @@ class Rectangle
     // Static Methods //
 public:
     static const Rectangle& Empty();
+    static const Rectangle& Unit();
 
     // CTOR / DTOR //
 public:
@@ -47,14 +48,18 @@ public:
     void setSize(const Vector2 &size);
     const Vector2& getSize() const;
 
-    const Vector2& getCenter() const;
+    Vector2 getCenter() const;
 
     //
     bool isEmpty();
     bool isUnit();
 
-
+    // Operators //
+public:
     //COWTODO: Add the operators.
+    friend bool operator ==(const Rectangle &lhs, const Rectangle &rhs);
+    friend bool operator !=(const Rectangle &lhs, const Rectangle &rhs);
+
 
     // iVars //
 private:
