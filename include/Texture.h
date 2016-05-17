@@ -25,7 +25,7 @@ public:
 
     // CTOR / DTOR //
 public:
-    Texture(const std::string &filename);
+    Texture(SDL_Texture *texture);
     ~Texture();
 
     COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(Texture);
@@ -36,7 +36,8 @@ public:
               const Rectangle &dstRect,
               float angle,
               const Vector2 &origin,
-              Flip  flip);
+              Flip  flip,
+              const SDL_Color &color);
 
     const Vector2& getTextureSize() const;
 
