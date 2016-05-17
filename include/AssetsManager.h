@@ -20,8 +20,8 @@ private:
     //Texture
     typedef std::map<std::string, Texture::SPtr> TextureMap;
     //Font
-    typedef std::pair<std::string, int> FontValue;
-    typedef std::map<FontValue, Font::SPtr>   FontMap;
+    typedef std::pair<std::string, int>     FontValue;
+    typedef std::map<FontValue, Font::SPtr> FontMap;
 
     // Singleton //
 public:
