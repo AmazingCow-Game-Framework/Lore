@@ -36,6 +36,10 @@ public:
     bool          getFlipX() const;
     bool          getFlipY() const;
 
+    //Color
+    void setColor(const SDL_Color &color);
+    const SDL_Color& getColor() const;
+
     //Texture
     Texture::SPtr getTexture() const;
     void setTexture(Texture::SPtr texture,
@@ -55,6 +59,7 @@ private:
     Rectangle     m_textureRect;
     Texture::Flip m_flip;
 
+    SDL_Color m_color;
 };
 
 NS_LORE_END
