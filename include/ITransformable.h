@@ -12,8 +12,8 @@ class ITransformable
 {
     // CTOR / DTOR //
 public:
-    ITransformable()          { /* Empty */  }
-    virtual ~ITransformable() { /* Empty */  }
+    ITransformable();
+    virtual ~ITransformable();
 
     // Public Methods //
 public:
@@ -55,6 +55,7 @@ public:
     float          getOriginY() const;
 
 
+public:
     //Move
     void move(const Vector2 &displacement);
     void moveX(float x);
@@ -70,8 +71,11 @@ public:
     void scaleY(float y);
 
     // iVars //
-protected:
-    Rectangle m_boundingBox;
+private:
+    Vector2 m_position;
+    float   m_rotation;
+    Vector2 m_scale;
+    Vector2 m_origin;
 };
 
 NS_LORE_END
