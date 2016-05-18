@@ -35,6 +35,7 @@
 			<Add directory="../../Lore" />
 			<Add directory="../lib/CoreGame/include" />
 			<Add directory="../lib/CoreRandom/include" />
+			<Add directory="../lib/CoreClock/include" />
 		</Compiler>
 		<Linker>
 			<Add option="`sdl2-config --libs`" />
@@ -60,6 +61,10 @@
 		<Unit filename="../include/Texture.h" />
 		<Unit filename="../include/Vector2.h" />
 		<Unit filename="../include/WindowManager.h" />
+		<Unit filename="../lib/CoreClock/include/Clock.h" />
+		<Unit filename="../lib/CoreClock/include/CoreClock.h" />
+		<Unit filename="../lib/CoreClock/include/CoreClock_Utils.h" />
+		<Unit filename="../lib/CoreClock/src/Clock.cpp" />
 		<Unit filename="../lib/CoreGame/include/CoreGame.h" />
 		<Unit filename="../lib/CoreGame/include/CoreGame_Macros.h" />
 		<Unit filename="../lib/CoreGame/include/CoreGame_Utils.h" />
@@ -77,12 +82,16 @@
 		<Unit filename="../src/Font.cpp" />
 		<Unit filename="../src/GameManager.cpp" />
 		<Unit filename="../src/GameObject.cpp" />
+		<Unit filename="../src/ITransformable.cpp" />
 		<Unit filename="../src/InputManager.cpp" />
+		<Unit filename="../src/Rectangle.cpp" />
+		<Unit filename="../src/SDLHelpers.cpp" />
 		<Unit filename="../src/SoundManager.cpp" />
 		<Unit filename="../src/Sprite.cpp" />
 		<Unit filename="../src/Text.cpp" />
+		<Unit filename="../src/Texture.cpp" />
+		<Unit filename="../src/Vector2.cpp" />
 		<Unit filename="../src/WindowManager.cpp" />
-		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
