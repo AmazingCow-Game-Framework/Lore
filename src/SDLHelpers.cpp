@@ -27,18 +27,27 @@ SDL_Color SDLHelpers::make_color(int r, int g, int b, int a /* = 255 */)
 
 SDL_Texture* SDLHelpers::load_texture_from_file(const std::string &filename)
 {
-    //COWTODO: Check errors.
     auto surface = IMG_Load(filename.c_str());
+
+    COREGAME_ASSERT_ARGS(surface != nullptr,
+                         "Cannot load surface with filename - %s",
+                         filename.c_str());
+
     return make_texture_free(surface);
 }
 
 SDL_Texture* SDLHelpers::make_texture_free(SDL_Surface *surface)
 {
-    //COWTODO: Check errors.
+    COREGAME_ASSERT(surface != nullptr,
+                    "Surface cannot be null");
+
     auto renderer = WindowManager::instance()->getRenderer();
 
     auto texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
+
+    COREGAME_ASSERT(texture != nullptr,
+                    "Failed to create texture");
 
     return texture;
 }
@@ -47,6 +56,11 @@ SDL_Texture* SDLHelpers::make_texture_free(SDL_Surface *surface)
 TTF_Font* SDLHelpers::load_font_from_file(const std::string &filename, int size)
 {
     auto font = TTF_OpenFont(filename.c_str(), 16);
+
+    COREGAME_ASSERT_ARGS(font != nullptr,
+                         "Cannot load font with filename - %s - size - %d",
+                         filename.c_str(), size);
+
     return font;
 }
 
