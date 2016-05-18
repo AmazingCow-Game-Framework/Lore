@@ -27,7 +27,7 @@ Sprite::Sprite(const std::string &filename,
 void Sprite::draw()
 {
     m_pTexture->draw(m_textureRect,
-                     Rectangle(getPosition(), m_textureRect.getSize()),
+                     getBounds(),
                      getRotation(),
                      getOrigin(),
                      m_flip,
@@ -109,4 +109,10 @@ void Sprite::setSourceRectangle(const Rectangle &srcRect /* = Rectangle::Empty()
 const Rectangle& Sprite::getSourceRectangle() const
 {
     return m_textureRect;
+}
+
+//Bounds
+Rectangle Sprite::getBounds() const
+{
+    return Rectangle(getPosition() + m_textureRect.getSize());
 }

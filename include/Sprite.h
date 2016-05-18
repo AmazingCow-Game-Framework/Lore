@@ -51,6 +51,8 @@ public:
     void setSourceRectangle(const Rectangle &srcRect = Rectangle::Empty());
     const Rectangle& getSourceRectangle() const;
 
+    //Bounds
+    Rectangle getBounds() const;
 
     // iVars //
 private:
