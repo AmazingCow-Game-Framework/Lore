@@ -42,12 +42,14 @@ void Sprite::setFlip(Texture::Flip flip)
 
 void Sprite::setFlipX(bool flip)
 {
-    //COWTODO: Implement.
+    if(flip) m_flip |= Texture::Flip::X;
+    else     m_flip &= Texture::Flip::Y;
 }
 
 void Sprite::setFlipY(bool flip)
 {
-    //COWTODO: Implement.
+    if(flip) m_flip |= Texture::Flip::Y;
+    else     m_flip &= Texture::Flip::X;
 }
 
 Texture::Flip Sprite::getFlip() const
@@ -57,12 +59,12 @@ Texture::Flip Sprite::getFlip() const
 
 bool Sprite::getFlipX() const
 {
-    //COWTODO: Implement.
+    return (m_flip & Texture::Flip::X) == Texture::Flip::X;
 }
 
 bool Sprite::getFlipY() const
 {
-    //COWTODO: Implement.
+    return (m_flip & Texture::Flip::Y) == Texture::Flip::Y;
 }
 
 
