@@ -114,5 +114,5 @@ const Rectangle& Sprite::getSourceRectangle() const
 //Bounds
 Rectangle Sprite::getBounds() const
 {
-    return Rectangle(getPosition() + m_textureRect.getSize());
+    return Rectangle(getPosition(), m_textureRect.getSize());
 }
