@@ -30,9 +30,16 @@ public:
     // Operators //
 public:
     //COWTODO: Add the operators.
+    //Friends
     friend bool operator ==(const Vector2 &lhs, const Vector2 &rhs);
     friend bool operator !=(const Vector2 &lhs, const Vector2 &rhs);
 
+    friend Vector2 operator +(const Vector2 &lhs, const Vector2 &rhs);
+    friend Vector2 operator -(const Vector2 &lhs, const Vector2 &rhs);
+
+    //Members
+    Vector2& operator +=(const Vector2 &rhs);
+    Vector2& operator -=(const Vector2 &rhs);
 
     // iVars //
 private:

@@ -62,14 +62,40 @@ float Vector2::getY() const
 }
 
 // Operators //
+//Friends
 NS_LORE_BEGIN
 bool operator ==(const Vector2 &lhs, const Vector2 &rhs)
 {
     return lhs.m_x == rhs.m_x &&
            lhs.m_y == rhs.m_y;
 }
+
 bool operator !=(const Vector2 &lhs, const Vector2 &rhs)
 {
     return !(lhs == rhs);
 }
+
+Vector2 operator +(const Vector2 &lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs.m_x + rhs.m_x, lhs.m_y + rhs.m_y);
+}
+
+Vector2 operator -(const Vector2 &lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs.m_x - rhs.m_x, lhs.m_y - rhs.m_y);
+}
 NS_LORE_END
+
+//Members
+Vector2& Vector2::operator +=(const Vector2 &rhs)
+{
+    this->m_x += rhs.m_x;
+    this->m_y += rhs.m_x;
+    return (*this);
+}
+Vector2& Vector2::operator -=(const Vector2 &rhs)
+{
+    this->m_x -= rhs.m_x;
+    this->m_y -= rhs.m_x;
+    return (*this);
+}
