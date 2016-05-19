@@ -29,16 +29,16 @@ void ITransformable::setPosition(const Vector2 &position)
 }
 void ITransformable::setPosition(float x, float y)
 {
-    m_position.setX(x);
-    m_position.setY(y);
+    m_position.x = x;
+    m_position.y = y;
 }
 void ITransformable::setPositionX(float x)
 {
-    m_position.setX(x);
+    m_position.x = x;
 }
 void ITransformable::setPositionY(float y)
 {
-    m_position.setY(y);
+    m_position.y = y;
 }
 
 const Vector2& ITransformable::getPosition() const
@@ -47,11 +47,11 @@ const Vector2& ITransformable::getPosition() const
 }
 float ITransformable::getPositionX() const
 {
-    return m_position.getX();
+    return m_position.x;
 }
 float ITransformable::getPositionY() const
 {
-    return m_position.getY();
+    return m_position.y;
 }
 
 
@@ -73,16 +73,16 @@ void ITransformable::setScale(const Vector2 &scale)
 }
 void ITransformable::setScale(float x, float y)
 {
-    m_scale.setX(x);
-    m_scale.setY(y);
+    m_scale.x = x;
+    m_scale.y = y;
 }
 void ITransformable::setScaleX(float x)
 {
-    m_scale.setX(x);
+    m_scale.x = x;
 }
 void ITransformable::setScaleY(float y)
 {
-    m_scale.setY(y);
+    m_scale.y = y;
 }
 
 const Vector2& ITransformable::getScale() const
@@ -91,11 +91,11 @@ const Vector2& ITransformable::getScale() const
 }
 float ITransformable::getScaleX() const
 {
-    return m_scale.getX();
+    return m_scale.x;
 }
 float ITransformable::getScaleY() const
 {
-    return m_scale.getY();
+    return m_scale.y;
 }
 
 
@@ -106,16 +106,16 @@ void ITransformable::setOrigin(const Vector2 &origin)
 }
 void ITransformable::setOrigin(float x, float y)
 {
-    m_origin.setX(x);
-    m_origin.setY(y);
+    m_origin.x = x;
+    m_origin.y = y;
 }
 void ITransformable::setOriginX(float x)
 {
-    m_origin.setX(x);
+    m_origin.x = x;
 }
 void ITransformable::setOriginY(float y)
 {
-    m_origin.setY(y);
+    m_origin.y = y;
 }
 
 const Vector2& ITransformable::getOrigin() const
@@ -124,11 +124,11 @@ const Vector2& ITransformable::getOrigin() const
 }
 float ITransformable::getOriginX() const
 {
-    return m_origin.getX();
+    return m_origin.x;
 }
 float ITransformable::getOriginY() const
 {
-    return m_origin.getY();
+    return m_origin.y;
 }
 
 
@@ -137,15 +137,15 @@ float ITransformable::getOriginY() const
 //Move
 void ITransformable::move(const Vector2 &displacement)
 {
-    //COWTODO: Implement.
+    m_position += displacement;
 }
 void ITransformable::moveX(float x)
 {
-    //COWTODO: Implement.
+    m_position.x += x;
 }
 void ITransformable::moveY(float y)
 {
-    //COWTODO: Implement.
+    m_position.y += y;
 }
 
 //Rotate
