@@ -4,8 +4,9 @@
 //Usings
 USING_NS_LORE
 
-
-// Static Methods //
+////////////////////////////////////////////////////////////////////////////////
+// Static Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
 const Vector2& Vector2::Zero()
 {
     static Vector2 s_zeroRect;
@@ -18,8 +19,21 @@ const Vector2& Vector2::One()
     return s_oneRect;
 }
 
+const Vector2& Vector2::UnitX()
+{
+    static Vector2 s_unitX(1, 0);
+    return s_unitX;
+}
+const Vector2& Vector2::UnitY()
+{
+    static Vector2 s_unitY(0, 1);
+    return s_unitY;
+}
 
-// CTOR / DTOR //
+
+////////////////////////////////////////////////////////////////////////////////
+// CTOR / DTOR                                                                //
+////////////////////////////////////////////////////////////////////////////////
 Vector2::Vector2() :
     Vector2(0, 0)
 {
@@ -33,41 +47,47 @@ Vector2::Vector2(float value) :
 }
 
 Vector2::Vector2(float x, float y) :
-    m_x(x),
-    m_y(y)
+    x(x),
+    y(y)
 {
     //Empty...
 }
 
 
-
-// Public Methods //
-//
+////////////////////////////////////////////////////////////////////////////////
+// Public Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
 void Vector2::setX(float x)
 {
-    m_x = x;
+    this->x = x;
 }
+
 float Vector2::getX() const
 {
-    return m_x;
+    return x;
 }
 
-void  Vector2::setY(float y)
+void Vector2::setY(float y)
 {
-    m_y = y;
+    this->y = y;
 }
+
 float Vector2::getY() const
 {
-    return m_y;
+    return y;
 }
 
-// Operators //
+////////////////////////////////////////////////////////////////////////////////
+// Operators                                                                  //
+////////////////////////////////////////////////////////////////////////////////
 //Friends
 NS_LORE_BEGIN
+
+//Comparisons
 bool operator ==(const Vector2 &lhs, const Vector2 &rhs)
 {
-    return lhs.m_x == rhs.m_x &&
-           lhs.m_y == rhs.m_y;
+    return lhs.x == rhs.x &&
+           lhs.y == rhs.y;
 }
 
 bool operator !=(const Vector2 &lhs, const Vector2 &rhs)
@@ -75,27 +95,152 @@ bool operator !=(const Vector2 &lhs, const Vector2 &rhs)
     return !(lhs == rhs);
 }
 
+
+//Add / Subtract - Vectors
 Vector2 operator +(const Vector2 &lhs, const Vector2 &rhs)
 {
-    return Vector2(lhs.m_x + rhs.m_x, lhs.m_y + rhs.m_y);
+    return Vector2(lhs.x + rhs.x,
+                   lhs.y + rhs.y);
 }
 
 Vector2 operator -(const Vector2 &lhs, const Vector2 &rhs)
 {
-    return Vector2(lhs.m_x - rhs.m_x, lhs.m_y - rhs.m_y);
+    return Vector2(lhs.x - rhs.x,
+                   lhs.y - rhs.y);
+}
+
+
+//Add / Subtract - Scalars
+Vector2 operator +(const Vector2 &lhs, float rhs)
+{
+    return Vector2(lhs.x + rhs,
+                   lhs.y + rhs);
+}
+
+Vector2 operator -(const Vector2 &lhs, float rhs)
+{
+    return Vector2(lhs.x - rhs,
+                   lhs.y - rhs);
+}
+
+
+Vector2 operator +(float lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs + rhs.x,
+                   lhs + rhs.y);
+}
+
+Vector2 operator -(float lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs - rhs.x,
+                   lhs - rhs.y);
+}
+
+
+//Multiply / Divide - Vectors
+Vector2 operator *(const Vector2 &lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs.x * rhs.x,
+                   lhs.y * rhs.y);
+}
+
+Vector2 operator /(const Vector2 &lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs.x / rhs.x,
+                   lhs.y / rhs.y);
+}
+
+
+//Multiply / Divide - Scalars
+Vector2 operator *(const Vector2 &lhs, float rhs)
+{
+    return Vector2(lhs.x * rhs,
+                   lhs.y * rhs);
+}
+
+Vector2 operator /(const Vector2 &lhs, float rhs)
+{
+    float factor = 1.0f / rhs;
+    return Vector2(lhs.x * factor,
+                   lhs.y * factor);
+}
+
+
+Vector2 operator *(float lhs, const Vector2 &rhs)
+{
+    return Vector2(lhs * rhs.x,
+                   lhs * rhs.y);
+}
+
+Vector2 operator /(float lhs, const Vector2 &rhs)
+{
+    float factor = 1.0f / lhs;
+    return Vector2(rhs.x * factor,
+                   rhs.y * factor);
 }
 NS_LORE_END
 
+
 //Members
+//Add / Subtract - Vectors
 Vector2& Vector2::operator +=(const Vector2 &rhs)
 {
-    this->m_x += rhs.m_x;
-    this->m_y += rhs.m_x;
+    this->x += rhs.x;
+    this->y += rhs.y;
     return (*this);
 }
+
 Vector2& Vector2::operator -=(const Vector2 &rhs)
 {
-    this->m_x -= rhs.m_x;
-    this->m_y -= rhs.m_x;
+    this->x -= rhs.x;
+    this->y -= rhs.y;
+    return (*this);
+}
+
+
+//Add / Subtract - Scalars
+Vector2& Vector2::operator +=(float rhs)
+{
+    this->x += rhs;
+    this->y += rhs;
+    return (*this);
+}
+
+Vector2& Vector2::operator -=(float rhs)
+{
+    this->x -= rhs;
+    this->y -= rhs;
+    return (*this);
+}
+
+
+//Multiply / Divide - Vectors
+Vector2& Vector2::operator *=(const Vector2 &rhs)
+{
+    this->x *= rhs.x;
+    this->y *= rhs.y;
+    return (*this);
+}
+
+Vector2& Vector2::operator /=(const Vector2 &rhs)
+{
+    this->x /= rhs.x;
+    this->y /= rhs.y;
+    return (*this);
+}
+
+
+//Multiply / Divide - Scalars
+Vector2& Vector2::operator *=(float rhs)
+{
+    this->x *= rhs;
+    this->y *= rhs;
+    return (*this);
+}
+
+Vector2& Vector2::operator /=(float rhs)
+{
+    this->x /= rhs;
+    this->y /= rhs;
     return (*this);
 }
