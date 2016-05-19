@@ -47,5 +47,15 @@ private:
     Vector2      m_size;
 };
 
+
+// Operators for Texture::Flip //
+Texture::Flip operator | (Texture::Flip lhs, Texture::Flip rhs);
+Texture::Flip operator & (Texture::Flip lhs, Texture::Flip rhs);
+Texture::Flip operator ^ (Texture::Flip lhs, Texture::Flip rhs);
+
+Texture::Flip& operator |=(Texture::Flip &lhs, Texture::Flip rhs);
+Texture::Flip& operator &=(Texture::Flip &lhs, Texture::Flip rhs);
+Texture::Flip& operator ^=(Texture::Flip &lhs, Texture::Flip rhs);
+
 NS_LORE_END
 #endif // __Lore_include_Texture_h__ //

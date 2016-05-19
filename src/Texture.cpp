@@ -8,6 +8,59 @@
 //Usings
 USING_NS_LORE
 
+// Operators for Texture::Flip //
+NS_LORE_BEGIN
+Texture::Flip operator | (Texture::Flip lhs, Texture::Flip rhs)
+{
+    return static_cast<Texture::Flip>(
+            static_cast<int>(lhs) | static_cast<int>(rhs)
+        );
+}
+
+Texture::Flip operator & (Texture::Flip lhs, Texture::Flip rhs)
+{
+    return static_cast<Texture::Flip>(
+            static_cast<int>(lhs) & static_cast<int>(rhs)
+        );
+}
+
+Texture::Flip operator ^ (Texture::Flip lhs, Texture::Flip rhs)
+{
+    return static_cast<Texture::Flip>(
+            static_cast<int>(lhs) ^ static_cast<int>(rhs)
+        );
+}
+
+
+Texture::Flip& operator |=(Texture::Flip &lhs, Texture::Flip rhs)
+{
+    lhs = static_cast<Texture::Flip>(
+            static_cast<int>(lhs) | static_cast<int>(rhs)
+        );
+
+    return lhs;
+}
+
+Texture::Flip& operator &=(Texture::Flip &lhs, Texture::Flip rhs)
+{
+    lhs = static_cast<Texture::Flip>(
+            static_cast<int>(lhs) & static_cast<int>(rhs)
+        );
+
+    return lhs;
+}
+
+Texture::Flip& operator ^=(Texture::Flip &lhs, Texture::Flip rhs)
+{
+    lhs = static_cast<Texture::Flip>(
+            static_cast<int>(lhs) ^ static_cast<int>(rhs)
+        );
+
+    return lhs;
+}
+NS_LORE_END
+
+
 // CTOR / DTOR //
 Texture::Texture(SDL_Texture *texture) :
     m_pTexture(texture)
