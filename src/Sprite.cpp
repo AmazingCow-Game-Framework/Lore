@@ -11,7 +11,7 @@ Sprite::Sprite() :
     m_pTexture   (nullptr),
     m_textureRect(Rectangle::Empty()),
     m_flip       (Texture::Flip::None),
-    m_color      ({255, 255, 255})
+    m_color      (Color::White())
 {
     //Empty...
 }
@@ -26,6 +26,9 @@ Sprite::Sprite(const std::string &filename,
 // Public Methods //
 void Sprite::draw()
 {
+    if(!getIsVisible())
+        return;
+
     m_pTexture->draw(m_textureRect,
                      getBounds(),
                      getRotation(),
@@ -69,15 +72,16 @@ bool Sprite::getFlipY() const
 
 
 //Color
-void Sprite::setColor(const SDL_Color &color)
+void Sprite::setColor(const Color &color)
 {
     m_color = color;
 }
 
-const SDL_Color& Sprite::getColor() const
+const Color& Sprite::getColor() const
 {
     return m_color;
 }
+
 
 //Texture
 Texture::SPtr Sprite::getTexture() const

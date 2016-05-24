@@ -7,6 +7,8 @@
 #include "IDrawable.h"
 #include "ITransformable.h"
 #include "Texture.h"
+#include "Color.h"
+
 
 NS_LORE_BEGIN
 
@@ -37,8 +39,8 @@ public:
     bool          getFlipY() const;
 
     //Color
-    void setColor(const SDL_Color &color);
-    const SDL_Color& getColor() const;
+    void setColor(const Color &color);
+    const Color& getColor() const;
 
     //Texture
     Texture::SPtr getTexture() const;
@@ -61,7 +63,7 @@ private:
     Rectangle     m_textureRect;
     Texture::Flip m_flip;
 
-    SDL_Color m_color;
+    Color m_color;
 };
 
 NS_LORE_END
