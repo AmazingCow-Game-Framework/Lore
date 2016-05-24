@@ -7,7 +7,7 @@ class IUpdatable
 {
     // CTOR / DTOR //
 public:
-    IUpdatable()          { /* Empty */  }
+    IUpdatable()          { /* Empty */ }
     virtual ~IUpdatable() { /* Empty */ }
 
     // Public Methods //
