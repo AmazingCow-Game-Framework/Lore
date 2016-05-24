@@ -58,7 +58,7 @@ Texture::SPtr AssetsManager::loadTexture(const std::string &filename)
 }
 
 Font::SPtr AssetsManager::loadFont(const std::string &filename,
-                                                 int size)
+                                   int size)
 {
     auto sdlFont   = SDLHelpers::load_font_from_file(fullpath(filename), size);
     auto font      = std::make_shared<Font>(sdlFont);
