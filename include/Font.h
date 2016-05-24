@@ -5,6 +5,8 @@
 #include <string>
 //Lore
 #include "Lore_Utils.h"
+#include "Texture.h"
+#include "Color.h"
 
 NS_LORE_BEGIN
 
@@ -19,6 +21,12 @@ public:
     ~Font();
 
     COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(Font);
+
+    // Public Methods //
+public:
+    Texture::SPtr prepareTexture(const std::string &str,
+                                 const Color &fgColor,
+                                 const Color &bgColor);
 
     // iVars //
 private:
