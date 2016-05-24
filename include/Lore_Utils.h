@@ -8,8 +8,6 @@
 
 //std
 #include <memory>
-#include <iostream>
-using namespace std;
 
 //SDL
 #include <SDL2/SDL.h>
