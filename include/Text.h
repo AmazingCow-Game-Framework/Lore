@@ -8,6 +8,10 @@
 #include "IDrawable.h"
 #include "ITransformable.h"
 #include "Font.h"
+#include "Color.h"
+#include "Texture.h"
+#include "Rectangle.h"
+
 
 NS_LORE_BEGIN
 
@@ -29,11 +33,11 @@ public:
     const std::string& getString() const;
 
     //Color
-    void setForegroundColor(const SDL_Color &color);
-    const SDL_Color& getForegroundColor() const;
+    void setForegroundColor(const Color &color);
+    const Color& getForegroundColor() const;
 
-    void setBackgroundColor(const SDL_Color &color);
-    const SDL_Color& getBackgroundColor() const;
+    void setBackgroundColor(const Color &color);
+    const Color& getBackgroundColor() const;
 
     //Font
     void setFont(Font::SPtr font);
@@ -50,12 +54,14 @@ private:
 private:
     std::string m_string;
 
-    Font::SPtr m_pFont;
+    Font::SPtr    m_pFont;
+    Texture::SPtr m_pCurrentTexture;
+    Rectangle     m_textureRect;
 
-    SDL_Color m_fgColor;
-    SDL_Color m_bgColor;
+    Texture::Flip m_flip;
 
-    Vector2 m_size;
+    Color m_fgColor;
+    Color m_bgColor;
 };
 
 NS_LORE_END
