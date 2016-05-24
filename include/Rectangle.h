@@ -11,7 +11,7 @@ class Rectangle
     // Static Methods //
 public:
     static const Rectangle& Empty();
-    static const Rectangle& Unit();
+    static const Rectangle& Unit ();
 
     // CTOR / DTOR //
 public:
@@ -53,6 +53,7 @@ public:
     //
     bool isEmpty();
     bool isUnit();
+
 
     // Operators //
 public:
