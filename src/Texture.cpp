@@ -63,18 +63,24 @@ NS_LORE_END
 
 // CTOR / DTOR //
 Texture::Texture(SDL_Texture *texture) :
-    m_pTexture(texture)
+    m_pTexture(texture),
+    m_size    (Vector2::Zero())
 {
+    //Initialized with nullptr texture
+    //There is no need to get the size...
+    if(!m_pTexture)
+        return;
+
     int w, h;
     SDL_QueryTexture(m_pTexture, nullptr, nullptr, &w, &h);
 
-    m_size.setX(w);
-    m_size.setY(h);
+    m_size.x = w;
+    m_size.y = h;
 }
 
 Texture::~Texture()
 {
-    cerr << "Texture dtor" << endl;
+    COREGAME_DLOG(CoreGame::Log::Type::Debug4, "Lore::Texture DTOR");
 
     //COWTODO: Check errors.
     SDL_DestroyTexture(m_pTexture);
@@ -87,27 +93,17 @@ void Texture::draw(const Rectangle &srcRect,
                    float angle,
                    const Vector2 &origin,
                    Flip  flip,
-                   const SDL_Color &color)
+                   const Color &color)
 {
     //Turn the Lore types to SDL types...
-    auto sdl_srcRect = (SDL_Rect) {
-                            srcRect.getX(),     srcRect.getY(),
-                            srcRect.getWidth(), srcRect.getHeight()
-                        };
-
-    auto sdl_dstRect = (SDL_Rect) {
-                            dstRect.getX(),     dstRect.getY(),
-                            dstRect.getWidth(), dstRect.getHeight()
-                        };
+    auto sdl_srcRect = SDLHelpers::make_rect(srcRect);
+    auto sdl_dstRect = SDLHelpers::make_rect(dstRect);
 
     //Origin is in range of [0, 1].
-    auto sdl_origin = (SDL_Point) {
-                            origin.getX() * srcRect.getWidth(),
-                            origin.getY() * srcRect.getHeight()
-                        };
+    auto sdl_origin = SDLHelpers::make_point(origin.getX() * srcRect.getWidth(),
+                                             origin.getY() * srcRect.getHeight());
 
     auto sdl_flip = static_cast<SDL_RendererFlip>(flip);
-
 
     //Offset the position.
     sdl_dstRect.x -= sdl_origin.x;
