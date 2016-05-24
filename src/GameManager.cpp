@@ -37,7 +37,7 @@ void GameManager::run(std::unique_ptr<Scene> scene)
         frameStart = SDL_GetTicks();
 
         handleEvents();
-        update(1.0f / delayTime);
+        update(1.0f / m_targetFPS);
         draw();
 
         frameTime = SDL_GetTicks() - frameStart;
@@ -78,7 +78,7 @@ void GameManager::draw()
 {
     auto win = WindowManager::instance();
 
-    win->clear({255, 0 , 255});
+    win->clear();
         m_pScene->draw();
     win->render();
 }
