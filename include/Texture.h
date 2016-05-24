@@ -7,6 +7,8 @@
 #include "Lore_Utils.h"
 #include "Rectangle.h"
 #include "Vector2.h"
+#include "Color.h"
+
 
 NS_LORE_BEGIN
 
@@ -37,7 +39,7 @@ public:
               float angle,
               const Vector2 &origin,
               Flip  flip,
-              const SDL_Color &color);
+              const Color &color);
 
     const Vector2& getTextureSize() const;
 
