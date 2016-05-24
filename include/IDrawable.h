@@ -10,12 +10,21 @@ class IDrawable
 {
     // CTOR / DTOR //
 public:
-    IDrawable()          { /* Empty */  }
-    virtual ~IDrawable() { /* Empty */ }
+    IDrawable();
+    virtual ~IDrawable();
+
 
     // Public Methods //
 public:
     virtual void draw() = 0;
+
+    virtual void setIsVisible(bool visible);
+    virtual bool getIsVisible() const;
+
+
+    // iVars //
+private:
+    bool m_visible;
 };
 
 NS_LORE_END
