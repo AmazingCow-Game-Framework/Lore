@@ -4,7 +4,7 @@
 
 //Lore
 #include "Lore_Utils.h"
-
+#include "Color.h"
 
 NS_LORE_BEGIN
 
@@ -42,7 +42,7 @@ public:
     int getWindowWidth () const;
     int getWindowHeight() const;
 
-    void setClearColor(const SDL_Color &color);
+    void setClearColor(const Color &color);
 
     // iVars //
 private:

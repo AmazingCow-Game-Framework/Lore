@@ -76,12 +76,11 @@ int WindowManager::getWindowHeight() const
     return m_windowHeight;
 }
 
-void WindowManager::setClearColor(const SDL_Color &color)
+void WindowManager::setClearColor(const Color &color)
 {
     SDL_SetRenderDrawColor(m_pRenderer,
                            color.r,
                            color.g,
                            color.b,
                            255);
-
 }
