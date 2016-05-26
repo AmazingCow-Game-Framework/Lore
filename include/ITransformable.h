@@ -10,6 +10,24 @@ NS_LORE_BEGIN
 
 class ITransformable
 {
+    // Inner Types //
+public:
+    struct OriginHelpers
+    {
+        static const Vector2 TopLeft   (); //0, 0
+        static const Vector2 MiddleLeft(); //0, 0.5
+        static const Vector2 BottomLeft(); //0, 1
+
+        static const Vector2 TopCenter   (); //0.5, 0
+        static const Vector2 Center      (); //0.5, 0.5
+        static const Vector2 BottomCenter(); //0.5, 1
+
+        static const Vector2 TopRight   (); //1, 0
+        static const Vector2 MiddleRight(); //1, 0.5
+        static const Vector2 BottomRight(); //1, 1
+    };
+
+
     // CTOR / DTOR //
 public:
     ITransformable();
@@ -55,6 +73,7 @@ public:
     float          getOriginY() const;
 
 
+    // Transforms //
 public:
     //Move
     void move(const Vector2 &displacement);
@@ -69,6 +88,7 @@ public:
     void scale(float scale);
     void scaleX(float x);
     void scaleY(float y);
+
 
     // iVars //
 private:

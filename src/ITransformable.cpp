@@ -6,7 +6,71 @@
 //Usings
 USING_NS_LORE
 
-// CTOR / DTOR //
+
+////////////////////////////////////////////////////////////////////////////////
+// Inner Types                                                                //
+////////////////////////////////////////////////////////////////////////////////
+const Vector2 ITransformable::OriginHelpers::TopLeft()
+{
+    static Vector2 s_topLeft(0, 0);
+    return s_topLeft;
+}
+
+const Vector2 ITransformable::OriginHelpers::MiddleLeft()
+{
+    static Vector2 s_middleLeft(0, 0.5);
+    return s_middleLeft;
+}
+
+const Vector2 ITransformable::OriginHelpers::BottomLeft()
+{
+    static Vector2 s_bottomLeft(0, 1);
+    return s_bottomLeft;
+}
+
+
+const Vector2 ITransformable::OriginHelpers::TopCenter()
+{
+    static Vector2 s_topCenter(0.5, 0);
+    return s_topCenter;
+}
+
+const Vector2 ITransformable::OriginHelpers::Center()
+{
+    static Vector2 s_center(0.5, 0.5);
+    return s_center;
+}
+
+const Vector2 ITransformable::OriginHelpers::BottomCenter()
+{
+    static Vector2 s_bottomCenter(0.5, 1);
+    return s_bottomCenter;
+}
+
+
+const Vector2 ITransformable::OriginHelpers::TopRight()
+{
+    static Vector2 s_topRight(1, 0);
+    return s_topRight;
+}
+
+const Vector2 ITransformable::OriginHelpers::MiddleRight()
+{
+    static Vector2 s_middleRight(1, 0.5);
+    return s_middleRight;
+}
+
+const Vector2 ITransformable::OriginHelpers::BottomRight()
+{
+    static Vector2 s_bottomRight(1, 1);
+    return s_bottomRight;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// CTOR / DTOR                                                                //
+////////////////////////////////////////////////////////////////////////////////
 ITransformable::ITransformable() :
     m_position(Vector2::Zero()),
     m_rotation(0),
@@ -21,7 +85,9 @@ ITransformable::~ITransformable()
 }
 
 
-// Public Methods //
+////////////////////////////////////////////////////////////////////////////////
+// Public Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
 //Position
 void ITransformable::setPosition(const Vector2 &position)
 {
@@ -133,7 +199,8 @@ float ITransformable::getOriginY() const
 
 
 ////////////////////////////////////////////////////////////////////////////////
-
+// Transforms                                                                 //
+////////////////////////////////////////////////////////////////////////////////
 //Move
 void ITransformable::move(const Vector2 &displacement)
 {
