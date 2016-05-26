@@ -5,6 +5,8 @@
 //Lore
 #include "Lore_Utils.h"
 #include "Color.h"
+#include "Rectangle.h"
+
 
 NS_LORE_BEGIN
 
@@ -35,24 +37,33 @@ public:
 
     // Public Methods //
 public:
+    //Renderer
     SDL_Renderer* getRenderer() const;
 
+    //Design Size
+    const Rectangle& getDesignRect() const;
     int getDesignWidth () const;
     int getDesignHeight() const;
+
+    //Window Size
+    const Rectangle& getWindowRect() const;
     int getWindowWidth () const;
     int getWindowHeight() const;
 
+    //Clear color
     void setClearColor(const Color &color);
+    const Color& getClearColor() const;
+
 
     // iVars //
 private:
     SDL_Window   *m_pWindow;
     SDL_Renderer *m_pRenderer;
 
-    int m_designWidth;
-    int m_designHeight;
-    int m_windowWidth;
-    int m_windowHeight;
+    Rectangle m_designRect;
+    Rectangle m_windowRect;
+
+    Color m_clearColor;
 };
 
 NS_LORE_END
