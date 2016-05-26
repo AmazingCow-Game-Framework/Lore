@@ -34,11 +34,33 @@ public:
     void  setHeight(float h);
     float getHeight() const;
 
-    //
-    float getLeft  () const;
-    float getRight () const;
-    float getTop   () const;
+    //////////////////////////////////////////
+    //                Top                   //
+    //         TL            TR             //
+    //            +---------+               //
+    //            |         |               //
+    //    Left ML |    C    | MR  Right     //
+    //            |         |               //
+    //            +---------+               //
+    //         BL            BR             //
+    //              Bottom                  //
+    //////////////////////////////////////////
+    //Left
+    float   getLeft      () const;
+    Vector2 getTopLeft   () const;
+    Vector2 getMiddleLeft() const;
+    Vector2 getBottomLeft() const;
+    //Right
+    float   getRight      () const;
+    Vector2 getTopRight   () const;
+    Vector2 getMiddleRight() const;
+    Vector2 getBottomRight() const;
+    //Top
+    float getTop() const;
+    //Bottom
     float getBottom() const;
+    //Center
+    Vector2 getCenter() const;
 
 
     //
@@ -47,8 +69,6 @@ public:
 
     void setSize(const Vector2 &size);
     const Vector2& getSize() const;
-
-    Vector2 getCenter() const;
 
     //
     bool isEmpty();
