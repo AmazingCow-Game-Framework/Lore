@@ -31,7 +31,9 @@ public:
 
     // Public Methods //
 public:
-    int getRandomNumber(int min, int max);
+    int  getRandomNumber(int min, int max);
+    bool getRandomBool();
+
     int getTargetFPS() const;
 
 

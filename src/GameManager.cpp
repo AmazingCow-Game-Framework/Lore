@@ -62,6 +62,11 @@ int GameManager::getRandomNumber(int min, int max)
     return m_random.next(min, max);
 }
 
+bool GameManager::getRandomBool()
+{
+    return m_random.nextBool();
+}
+
 int GameManager::getTargetFPS() const
 {
     return m_targetFPS;
