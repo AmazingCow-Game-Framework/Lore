@@ -12,9 +12,12 @@ NS_LORE_BEGIN
 
 class SoundManager
 {
-    // Constants //
+    // Constants / Enums / Typdefs //
 public:
     static const int kPlayForever;
+private:
+    typedef std::map<std::string, Mix_Chunk*> EffectMap;
+    typedef std::map<std::string, Mix_Music*> MusicMap;
 
 
     // Singleton //
@@ -27,15 +30,21 @@ private:
 
     // Init / Shutdown //
 public:
-    void initialize();
+    void initialize(int    frequency,
+                    Uint16 format,
+                    int    channels,
+                    int    chunksize);
     void shutdown();
 
 
-    // Public Methods //
+    // Volume Methods //
 public:
     void setVolume(int vol);
     int  getVolume() const;
 
+
+    // Player Methods //
+public:
     void playEffect(const std::string &name, int loopTimes = 1);
     void stopEffect(const std::string &name);
     void stopAllEffects();
@@ -44,10 +53,22 @@ public:
     void stopMusic();
 
 
+    // Load / Unload Methods //
+public:
+    void loadEffect(const std::string &name);
+    void loadMusic(const std::string &name);
+
+    void unloadEffect(const std::string &name);
+    void unloadMusic(const std::string &name);
+
+    bool isEffectLoaded(const std::string &name);
+    bool isMusicLoaded(const std::string &name);
+
+
     // iVars //
 private:
-    std::map<std::string, int> m_soundEffectsMap;
-    std::map<std::string, int> m_musicsMap;
+    EffectMap m_effectsMap;
+    MusicMap  m_musicsMap;
 };
 
 NS_LORE_END
