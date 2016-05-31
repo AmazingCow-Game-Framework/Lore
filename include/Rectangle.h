@@ -74,6 +74,9 @@ public:
     bool isEmpty();
     bool isUnit();
 
+    // Query Methods //
+public:
+    bool intersects(const Rectangle &otherRect);
 
     // Operators //
 public:

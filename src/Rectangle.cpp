@@ -169,6 +169,16 @@ bool Rectangle::isUnit()
 }
 
 
+// Query Methods //
+bool Rectangle::intersects(const Rectangle &that)
+{
+    return that.getLeft () < this->getRight () &&
+           this->getLeft() < that.getRight  () &&
+           that.getTop  () < this->getBottom() &&
+           this->getTop () < that.getBottom ();
+}
+
+
 // Operators //
 NS_LORE_BEGIN
 bool operator ==(const Rectangle &lhs, const Rectangle &rhs)
