@@ -44,7 +44,14 @@ void Text::draw()
 //String
 void Text::setString(char *fmt, ...)
 {
-    m_string = fmt;
+    va_list args;
+    va_start(args, fmt);
+
+    //Forward the '...' to vformat
+    m_string = CoreGame::StringUtils::vformat(fmt, args);
+
+    va_end(args);
+
     calculate();
 }
 
