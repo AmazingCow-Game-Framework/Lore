@@ -2,10 +2,10 @@
 //Header
 #include "../include/AssetsManager.h"
 //Lore
-#include "../include/WindowManager.h"
 #include "../include/SDLHelpers.h"
+#include "../include/WindowManager.h"
 
-//Usigns
+//Usings
 USING_NS_LORE;
 
 

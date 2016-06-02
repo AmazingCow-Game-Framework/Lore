@@ -5,9 +5,9 @@
 #include <string>
 //Lore
 #include "Lore_Utils.h"
+#include "Color.h"
 #include "Rectangle.h"
 #include "Vector2.h"
-#include "Color.h"
 
 
 NS_LORE_BEGIN
@@ -25,12 +25,14 @@ public:
         Both = 3
     };
 
+
     // CTOR / DTOR //
 public:
     Texture(SDL_Texture *texture);
     ~Texture();
 
     COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(Texture);
+
 
     // Public Methods //
 public:
@@ -43,6 +45,7 @@ public:
 
     const Vector2& getTextureSize() const;
 
+
     // iVars //
 private:
     SDL_Texture *m_pTexture;
@@ -51,6 +54,8 @@ private:
 
 
 // Operators for Texture::Flip //
+std::ostream& operator <<(std::ostream &os, Texture::Flip flip);
+
 Texture::Flip operator | (Texture::Flip lhs, Texture::Flip rhs);
 Texture::Flip operator & (Texture::Flip lhs, Texture::Flip rhs);
 Texture::Flip operator ^ (Texture::Flip lhs, Texture::Flip rhs);

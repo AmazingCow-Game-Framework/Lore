@@ -3,8 +3,9 @@
 
 //Lore
 #include "Lore_Utils.h"
-#include "Vector2.h"
 #include "Rectangle.h"
+#include "Vector2.h"
+
 
 NS_LORE_BEGIN
 
@@ -32,6 +33,7 @@ public:
 public:
     ITransformable();
     virtual ~ITransformable();
+
 
     // Public Methods //
 public:

@@ -4,10 +4,12 @@
 //std
 #include <string>
 //Lore
+#include "Lore_Utils.h"
+#include "Color.h"
 #include "IDrawable.h"
 #include "ITransformable.h"
+#include "Rectangle.h"
 #include "Texture.h"
-#include "Color.h"
 
 
 NS_LORE_BEGIN
@@ -55,6 +57,7 @@ public:
 
     //Bounds
     Rectangle getBounds() const;
+
 
     // iVars //
 private:

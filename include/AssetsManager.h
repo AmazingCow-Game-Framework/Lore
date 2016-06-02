@@ -3,13 +3,14 @@
 #define __Lore_include_AssetsManager_h__
 
 //std
-#include <string>
 #include <map>
-#include <utility>
+#include <string>
+#include <utility> //pair
 //Lore
 #include "Lore_Utils.h"
-#include "Texture.h"
 #include "Font.h"
+#include "Texture.h"
+
 
 NS_LORE_BEGIN
 
@@ -23,6 +24,7 @@ private:
     typedef std::pair<std::string, int>     FontValue;
     typedef std::map<FontValue, Font::SPtr> FontMap;
 
+
     // Singleton //
 public:
     COREGAME_SINGLETON_OF(AssetsManager);
@@ -30,15 +32,18 @@ public:
 private:
     AssetsManager() {};
 
+
     // Init / Shutdown  //
 public:
     void initialize(const std::string& searchPath);
     void shutdown();
 
+
     // Public Functions //
 public:
     Texture::SPtr getTexture(const std::string &filename);
     Font::SPtr    getFont   (const std::string &filename, int size);
+
 
     // Private Functions //
 private:
@@ -46,6 +51,7 @@ private:
     Font::SPtr    loadFont(const std::string &filename, int size);
 
     std::string fullpath(const std::string &filename);
+
 
     // iVars //
 private:
