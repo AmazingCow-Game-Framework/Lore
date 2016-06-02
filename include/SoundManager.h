@@ -8,15 +8,28 @@
 //Lore
 #include "Lore_Utils.h"
 
+
 NS_LORE_BEGIN
 
 class SoundManager
 {
-    // Constants / Enums / Typdefs //
+    // Inner Types //
+private:
+    struct EffectInfo
+    {
+        Mix_Chunk *chunk;
+        int        playChannel;
+    };
+
+
+    // Constants / Enums / Typedefs //
 public:
     static const int kPlayForever;
+    static const int kPlayOneTime;
+
+
 private:
-    typedef std::map<std::string, Mix_Chunk*> EffectMap;
+    typedef std::map<std::string, EffectInfo> EffectMap;
     typedef std::map<std::string, Mix_Music*> MusicMap;
 
 
@@ -30,7 +43,8 @@ private:
 
     // Init / Shutdown //
 public:
-    void initialize(int    frequency,
+    void initialize(const std::string &searchPath,
+                    int    frequency,
                     Uint16 format,
                     int    channels,
                     int    chunksize);
@@ -45,28 +59,45 @@ public:
 
     // Player Methods //
 public:
-    void playEffect(const std::string &name, int loopTimes = 1);
+    //Effect
+    void playEffect(const std::string &name, int loopTimes = kPlayOneTime);
     void stopEffect(const std::string &name);
     void stopAllEffects();
 
+    //Music
     void playMusic(const std::string &name, int loopTimes = kPlayForever);
     void stopMusic();
 
 
     // Load / Unload Methods //
 public:
+    //Path
+    void setSearchPath(const std::string &path);
+    const std::string& getSearchPath() const;
+
+    //Load
     void loadEffect(const std::string &name);
     void loadMusic(const std::string &name);
 
+    //Unload
     void unloadEffect(const std::string &name);
     void unloadMusic(const std::string &name);
 
+    //Query
     bool isEffectLoaded(const std::string &name);
     bool isMusicLoaded(const std::string &name);
 
 
+    // Private Methods //
+private:
+    EffectInfo& getEffectInfo(const std::string &name);
+    std::string fullpath(const std::string &path);
+
+
     // iVars //
 private:
+    std::string m_searchPath;
+
     EffectMap m_effectsMap;
     MusicMap  m_musicsMap;
 };
