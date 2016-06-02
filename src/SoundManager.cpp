@@ -19,8 +19,10 @@ const int SoundManager::kPlayForever = -1;
 const int SoundManager::kPlayOneTime =  0;
 
 //Internal
-constexpr int kFirstAvailableChannel = -1;
-
+constexpr int   kMIX_FirstAvailableChannel = -1;
+constexpr int   kMIX_AllChannels           = -1;
+constexpr float kMIX_MaxVolume             = 128.0;
+constexpr int   kMIX_GetVolume             = -1;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Init / Shutdown                                                            //
@@ -77,14 +79,57 @@ void SoundManager::shutdown()
 ////////////////////////////////////////////////////////////////////////////////
 // Volume Methods                                                             //
 ////////////////////////////////////////////////////////////////////////////////
-void SoundManager::setVolume(int vol)
+//Master
+void SoundManager::setMasterVolume(float vol)
 {
+    PVT_LORE_DLOG_DEBUG(
+        "SoundManager::setMasterVolume",
+        "Setting Master Volume to %.2f", vol
+    );
 
+    setEffectsVolume(vol);
+    setMusicVolume  (vol);
 }
 
-int SoundManager::getVolume() const
+//Effect
+void SoundManager::setEffectsVolume(float vol)
 {
+    PVT_LORE_DLOG_DEBUG(
+        "SoundManager::setEffectsVolume",
+        "Setting Effects Volume to %.2f", vol
+    );
 
+    COREGAME_ASSERT_ARGS(vol >= 0 && vol <= 1,
+                         "Volume range is invalid (0, 1) - volume (%d)",
+                         vol);
+
+    Mix_Volume(kMIX_AllChannels, static_cast<int>(vol * kMIX_MaxVolume));
+}
+
+float SoundManager::getEffectsVolume() const
+{
+    return Mix_Volume(kMIX_AllChannels, kMIX_GetVolume) / kMIX_MaxVolume;
+}
+
+
+//Music
+void SoundManager::setMusicVolume(float vol)
+{
+     PVT_LORE_DLOG_DEBUG(
+        "SoundManager::setMusicVolume",
+        "Setting Music Volume to %.2f", vol
+    );
+
+    COREGAME_ASSERT_ARGS(vol >= 0 && vol <= 1,
+                         "Volume range is invalid (0, 1) - volume (%d)",
+                         vol);
+
+    Mix_VolumeMusic(static_cast<int>(vol * kMIX_MaxVolume));
+}
+
+float SoundManager::getMusicVolume() const
+{
+    return Mix_VolumeMusic(kMIX_GetVolume) / kMIX_MaxVolume;
 }
 
 
@@ -98,7 +143,7 @@ void SoundManager::playEffect(const std::string &name,
     auto fullname   = fullpath(name);
     auto effectInfo = getEffectInfo(fullname);
 
-    effectInfo.playChannel = Mix_PlayChannel(kFirstAvailableChannel,
+    effectInfo.playChannel = Mix_PlayChannel(kMIX_FirstAvailableChannel,
                                              effectInfo.chunk,
                                              loopTimes);
 }

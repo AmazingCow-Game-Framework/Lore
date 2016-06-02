@@ -53,8 +53,16 @@ public:
 
     // Volume Methods //
 public:
-    void setVolume(int vol);
-    int  getVolume() const;
+    //Master
+    void setMasterVolume(float vol);
+
+    //Effect
+    void  setEffectsVolume(float vol);
+    float getEffectsVolume() const;
+
+    //Music
+    void  setMusicVolume(float vol);
+    float getMusicVolume() const;
 
 
     // Player Methods //
@@ -100,6 +108,7 @@ private:
 
     EffectMap m_effectsMap;
     MusicMap  m_musicsMap;
+
 };
 
 NS_LORE_END
