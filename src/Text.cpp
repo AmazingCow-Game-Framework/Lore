@@ -42,7 +42,13 @@ void Text::draw()
 }
 
 //String
-void Text::setString(char *fmt, ...)
+void Text::setString(const std::string &str)
+{
+    m_string = str;
+    calculate();
+}
+
+void Text::setString(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);

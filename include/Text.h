@@ -5,12 +5,12 @@
 #include <string>
 //Lore
 #include "Lore_Utils.h"
+#include "Color.h"
+#include "Font.h"
 #include "IDrawable.h"
 #include "ITransformable.h"
-#include "Font.h"
-#include "Color.h"
-#include "Texture.h"
 #include "Rectangle.h"
+#include "Texture.h"
 
 
 NS_LORE_BEGIN
@@ -29,7 +29,8 @@ public:
     virtual void draw() override;
 
     //String
-    void setString(char *fmt, ...);
+    void setString(const std::string &str);
+    void setString(const char *fmt, ...);
     const std::string& getString() const;
 
     //Color
