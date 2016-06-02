@@ -4,6 +4,7 @@
 //Usings
 USING_NS_LORE
 
+
 // Static Methods //
 const Color& Color::White()
 {

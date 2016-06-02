@@ -1,10 +1,9 @@
 #ifndef __Lore_include_Color_h__
 #define __Lore_include_Color_h__
 
-//std
-#include <string>
 //Lore
 #include "Lore_Utils.h"
+
 
 NS_LORE_BEGIN
 
@@ -26,7 +25,6 @@ public:
     // iVars //
 public:
     int r, g, b, a;
-
 };
 
 NS_LORE_END
