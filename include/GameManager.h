@@ -5,6 +5,7 @@
 #include "Lore_Utils.h"
 #include "Scene.h"
 
+
 NS_LORE_BEGIN
 
 class GameManager
