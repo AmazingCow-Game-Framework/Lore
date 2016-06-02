@@ -17,7 +17,8 @@ Sprite::Sprite() :
 }
 
 Sprite::Sprite(const std::string &filename,
-               const Rectangle &srcRect /* = Rectangle::Empty() */)
+               const Rectangle &srcRect /* = Rectangle::Empty() */) :
+    Sprite()
 {
     loadTexture(filename, srcRect);
 }
@@ -30,9 +31,9 @@ void Sprite::draw()
         return;
 
     m_pTexture->draw(m_textureRect,
-                     getBounds(),
+                     getBounds  (),
                      getRotation(),
-                     getOrigin(),
+                     getOrigin  (),
                      m_flip,
                      m_color);
 }
