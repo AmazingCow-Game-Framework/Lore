@@ -5,15 +5,18 @@
 #include <string>
 //Lore
 #include "Lore_Utils.h"
-#include "Texture.h"
 #include "Color.h"
+#include "Texture.h"
+
 
 NS_LORE_BEGIN
 
 class Font
 {
+    // Typedefs //
 public:
     typedef std::shared_ptr<Font> SPtr;
+
 
     // CTOR //
 public:
@@ -22,11 +25,13 @@ public:
 
     COREGAME_DISALLOW_COPY_MOVE_ASSIGNS(Font);
 
+
     // Public Methods //
 public:
     Texture::SPtr prepareTexture(const std::string &str,
                                  const Color &fgColor,
                                  const Color &bgColor);
+
 
     // iVars //
 private:
