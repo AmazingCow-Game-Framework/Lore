@@ -7,13 +7,14 @@
 #define USING_NS_LORE using namespace Lore;
 
 //std
-#include <memory>
+#include <memory> //Lore will need smart pointers...
 
 //SDL
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+
 //AmazingCow
 #include "CoreGame.h"
 #include "CoreRandom.h"
