@@ -28,25 +28,25 @@ void InputManager::update()
     m_pCurrKeys = const_cast<Uint8 *>(SDL_GetKeyboardState(nullptr));
 }
 
-bool InputManager::isKeyDown(int scanCode)
+bool InputManager::isKeyDown(KeyScanCodeType scanCode)
 {
     return m_pCurrKeys[scanCode];
 }
-bool InputManager::isKeyUp(int scanCode)
+bool InputManager::isKeyUp(KeyScanCodeType scanCode)
 {
     return !m_pCurrKeys[scanCode];
 }
 
-bool InputManager::wasKeyDown(int scanCode)
+bool InputManager::wasKeyDown(KeyScanCodeType scanCode)
 {
     return m_pPrevKeys[scanCode] && isKeyUp(scanCode);
 }
-bool InputManager::wasKeyUp(int scanCode)
+bool InputManager::wasKeyUp(KeyScanCodeType scanCode)
 {
     return !m_pPrevKeys[scanCode] && isKeyDown(scanCode);
 }
 
-bool InputManager::isKeyClick(int scanCode)
+bool InputManager::isKeyClick(KeyScanCodeType scanCode)
 {
     return isKeyUp(scanCode) && wasKeyDown(scanCode);
 }

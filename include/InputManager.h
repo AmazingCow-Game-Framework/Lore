@@ -3,12 +3,17 @@
 
 //Lore
 #include "Lore_Utils.h"
-#include "Scene.h"
+
 
 NS_LORE_BEGIN
 
 class InputManager
 {
+    // Enums //
+public:
+    typedef Uint8 KeyScanCodeType;
+
+
     // Singleton //
 public:
     COREGAME_SINGLETON_OF(InputManager);
@@ -22,23 +27,26 @@ public:
     void initialize();
     void shutdown();
 
+
     // Public Methods //
 public:
     void update();
 
-    bool isKeyDown(int scanCode);
-    bool isKeyUp  (int scanCode);
+    bool isKeyDown(KeyScanCodeType scanCode);
+    bool isKeyUp  (KeyScanCodeType scanCode);
 
-    bool wasKeyDown(int scanCode);
-    bool wasKeyUp  (int scanCode);
+    bool wasKeyDown(KeyScanCodeType scanCode);
+    bool wasKeyUp  (KeyScanCodeType scanCode);
 
-    bool isKeyClick(int scanCode);
+    bool isKeyClick(KeyScanCodeType scanCode);
+
 
     // iVars //
 private:
-    Uint8 *m_pPrevKeys;
-    Uint8 *m_pCurrKeys;
-    int    m_numKeys;
+    KeyScanCodeType *m_pPrevKeys;
+    KeyScanCodeType *m_pCurrKeys;
+
+    int m_numKeys;
 };
 
 NS_LORE_END
