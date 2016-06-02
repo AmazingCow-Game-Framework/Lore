@@ -1,6 +1,10 @@
 #ifndef __Lore_include_IUpdatable_h__
 #define __Lore_include_IUpdatable_h__
 
+//Lore
+#include "Lore_Utils.h"
+
+
 NS_LORE_BEGIN
 
 class IUpdatable

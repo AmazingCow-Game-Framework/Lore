@@ -2,7 +2,9 @@
 #define __Lore_include_Rectangle_h__
 
 //Lore
+#include "Lore_Utils.h"
 #include "Vector2.h"
+
 
 NS_LORE_BEGIN
 
@@ -13,11 +15,13 @@ public:
     static const Rectangle& Empty();
     static const Rectangle& Unit ();
 
+
     // CTOR / DTOR //
 public:
     Rectangle();
     Rectangle(float x, float y, float w, float h);
     Rectangle(const Vector2 &pos, const Vector2 &size);
+
 
     // Public Methods //
 public:
@@ -74,9 +78,11 @@ public:
     bool isEmpty();
     bool isUnit();
 
+
     // Query Methods //
 public:
     bool intersects(const Rectangle &otherRect);
+
 
     // Operators //
 public:
