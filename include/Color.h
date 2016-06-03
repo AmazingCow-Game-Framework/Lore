@@ -21,6 +21,9 @@ public:
     Color();
     Color(int red, int green, int blue, int alpha = 255);
 
+    // Public Methods //
+public:
+    void setRGBA(int red, int green, int blue, int alpha = 255);
 
     // iVars //
 public:

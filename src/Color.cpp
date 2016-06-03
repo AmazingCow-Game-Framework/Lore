@@ -41,3 +41,12 @@ Color::Color(int red, int green, int blue, int alpha /* = 255 */) :
     //Empty...
 }
 
+
+// Public Methods //
+void Color::setRGBA(int red, int green, int blue, int alpha /* = 255 */)
+{
+    r = red;
+    g = green;
+    b = blue;
+    a = alpha;
+}
