@@ -201,11 +201,11 @@ const Vector2& Rectangle::getSize() const
 //
 bool Rectangle::isEmpty()
 {
-    (*this) == Rectangle::Empty();
+    return (*this) == Rectangle::Empty();
 }
 bool Rectangle::isUnit()
 {
-    (*this) == Rectangle::Unit();
+    return (*this) == Rectangle::Unit();
 }
 
 
