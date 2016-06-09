@@ -63,13 +63,13 @@ public:
 
     // Update / Draw / Handle Events //
 public:
-    virtual void update(float dt)
+    virtual void update(float /* dt */)
     { /* Empty */ }
 
     virtual void draw()
     { /* Empty */ }
 
-    virtual void handleEvents(const SDL_Event &event)
+    virtual void handleEvents(const SDL_Event & /* event */)
     { /* Empty */ }
 };
 
