@@ -42,6 +42,8 @@
 #include "../include/Font.h"
 //Lore
 #include "../include/SDLHelpers.h"
+//Lore_Private
+#include "./private/include/Lore_Private_Utils.h"
 
 //Usings
 USING_NS_LORE;
@@ -68,6 +70,11 @@ Texture::SPtr Font::prepareTexture(const std::string &str,
                                    const Color &fgColor,
                                    const Color &bgColor)
 {
+
+    //COWTODO: We need learn more about TTF_Font and \
+    //how to use it correctly
+    PVT_LORE_UNUSED(bgColor);
+
     if(str.empty())
         return std::make_shared<Texture>(SDLHelpers::make_texture_empty());
 
