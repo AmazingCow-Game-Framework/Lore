@@ -42,6 +42,8 @@
 #include "../include/ITransformable.h"
 //Lore
 #include "../include/AssetsManager.h"
+//Lore Private
+#include "./private/include/Lore_Private_Utils.h"
 
 //Usings
 USING_NS_LORE
@@ -267,16 +269,20 @@ void ITransformable::rotate(float angle)
 void ITransformable::scale(const Vector2 factor)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(factor);
 }
 void ITransformable::scale(float scale)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(scale);
 }
 void ITransformable::scaleX(float x)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(x);
 }
 void ITransformable::scaleY(float y)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(y);
 }
