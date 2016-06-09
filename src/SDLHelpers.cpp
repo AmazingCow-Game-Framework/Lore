@@ -92,7 +92,16 @@ SDL_Rect SDLHelpers::make_rect(const Rectangle &rect)
 SDL_Color SDLHelpers::make_color(int r, int g, int b, int a /* = 255 */)
 {
     //COWTODO: Check errors.
-    return (SDL_Color){r, g, b, a};
+    COREGAME_ASSERT_ARGS((
+        (r >= 0 && r <= 255) &&
+        (g >= 0 && g <= 255) &&
+        (b >= 0 && b <= 255) &&
+        (a >= 0 && a <= 255)),
+        "Color components are out of range: r:%d g:%d b:%d a:%d", r, g, b, a);
+
+
+    //Cast to make the compiler happy.
+    return (SDL_Color){ Uint8(r), Uint8(g), Uint8(b), Uint8(a) };
 }
 
 SDL_Color SDLHelpers::make_color(const Color &color)
