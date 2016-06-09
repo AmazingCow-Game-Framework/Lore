@@ -46,4 +46,6 @@
 #define USING_NS_LORE_PVT using namespace Lore_Private;
 
 
+#define PVT_LORE_UNUSED(_what_) (void)(_what_)
+
 #endif // __Lore_src_private_include_Lore_Private_Utils_h__ //
