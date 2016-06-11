@@ -61,6 +61,7 @@ public:
     static const Vector2& UnitX();
     static const Vector2& UnitY();
 
+    static Vector2 OffsetBy(const Vector2 &source, float x, float y);
 
     // CTOR / DTOR //
 public:

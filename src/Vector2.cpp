@@ -70,6 +70,11 @@ const Vector2& Vector2::UnitY()
     return s_unitY;
 }
 
+Vector2 Vector2::OffsetBy(const Vector2 &source, float x, float y)
+{
+    return Vector2(source.x + x, source.y + y);
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
