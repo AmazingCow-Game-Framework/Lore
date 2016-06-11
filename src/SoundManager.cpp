@@ -43,6 +43,7 @@
 //Lore
 #include "../include/ErrorControl.h"
 //Lore_Private
+#include "./private/include/Lore_Private_Utils.h"
 #include "./private/include/Log.h"
 
 //Usings
@@ -74,7 +75,7 @@ void SoundManager::initialize(const std::string &searchPath,
 
 {
     //Only initialize SDL_Audio if it wasn't initialized yet...
-    if(SDL_WasInit(SDL_INIT_AUDIO) < 0)
+    if(SDL_WasInit(SDL_INIT_AUDIO) != 0)
     {
         if(SDL_Init(SDL_INIT_AUDIO) < 0)
         {
@@ -197,13 +198,16 @@ void SoundManager::stopEffect(const std::string &name)
 
 void SoundManager::stopAllEffects()
 {
-
+    //COWTODO: Implement...
 }
 
 //Music
 void SoundManager::playMusic(const std::string &name,
                              int loopTimes /* = kPlayForerver */)
 {
+    //COWTODO: Implement...
+    PVT_LORE_UNUSED(name);
+    PVT_LORE_UNUSED(loopTimes);
 
 }
 
@@ -270,17 +274,20 @@ void SoundManager::loadEffect(const std::string &name)
 void SoundManager::loadMusic(const std::string &name)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(name);
 }
 
 //Unload
 void SoundManager::unloadEffect(const std::string &name)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(name);
 }
 
 void SoundManager::unloadMusic(const std::string &name)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(name);
 }
 
 //Query
@@ -292,6 +299,8 @@ bool SoundManager::isEffectLoaded(const std::string &name)
 bool SoundManager::isMusicLoaded(const std::string &name)
 {
     //COWTODO: Implement.
+    PVT_LORE_UNUSED(name);
+    return false;
 }
 
 
