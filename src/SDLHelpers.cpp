@@ -43,6 +43,8 @@
 //Lore
 #include "../include/WindowManager.h"
 
+#include <unistd.h>
+
 //Usings
 USING_NS_LORE
 
@@ -117,9 +119,12 @@ SDL_Texture* SDLHelpers::load_texture_from_file(const std::string &filename)
 {
     auto surface = IMG_Load(filename.c_str());
 
-    COREGAME_ASSERT_ARGS(surface != nullptr,
-                         "Cannot load surface with filename - %s",
-                         filename.c_str());
+    COREGAME_ASSERT_ARGS(
+        surface != nullptr,
+        "Cannot load surface with filename - %s - CWD: %s",
+        filename.c_str(),
+        get_current_dir_name()
+    );
 
     return make_texture_free(surface);
 }
