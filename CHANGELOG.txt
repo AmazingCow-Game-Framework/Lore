@@ -1,6 +1,45 @@
 --------------------------------------------------------------------------------
 | Version 0.1.x                                                                |
 --------------------------------------------------------------------------------
+[Version 0.1.2] - Jun 16, 2016.
+-- General -- 
+    A lot of bugfixes and assertions adding.
+
+-- Sources --
+    include/SDLHelpers.h
+    src/SDLHelpers.cpp
+        - [BUGFIX] SDL cannot create textures with size 0
+          so make sure that this cannot happens.
+    
+    src/ITranformable.cpp
+        - Add assertions.
+    
+    include/Texture.h
+    src/Texture.cpp
+        - Add an unique_ptr typedef.
+        - Change the name of iVar to better reflect that it's
+          a SDL Type.
+        - Add assertions.
+        - Cosmetic Changes.
+
+    include/Font.h
+    src/Font.cpp
+        - Change the return type of prepareTexture to Texture::UPtr
+          Strangely (or for some ignorance of my part) with the
+          std::shared_ptr we were getting segmentation fault errors.
+          Now it seems to be fixed.
+        - Change the iVar name to better reflect that it's a SDL type.
+        - Add assertions.
+        - Change the prepareTexture method to only do the job if
+          there is a string.
+    
+    include/Text.h
+    src/Text.cpp
+        - Fix the CTOR initialization.
+        - Only draw if there is a valid texture.
+        - Change the calculate method.
+
+--------------------------------------------------------------------------------
 [Version 0.1.1] - Jun 15, 2016.
 -- General -- 
     - Change from NDEBUG to LORE_RELEASE
