@@ -65,19 +65,19 @@ NS_LORE_END
 // Log Macros - DEBUG AND RELEASE                                             //
 ////////////////////////////////////////////////////////////////////////////////
 #define PVT_LORE_LOG_DEBUG(_owner_, _fmt_, ...)                    \
-    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Debug4,                      \
+    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Debug4,  \
                                      _owner_,                      \
                                      _fmt_,                        \
                                      ##__VA_ARGS__)
 
 #define PVT_LORE_LOG_ERROR(_owner_, _fmt_, ...)                  \
-    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Error,                     \
+    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Error, \
                                      _owner_,                    \
                                      _fmt_,                      \
                                      ##__VA_ARGS__)
 
 #define PVT_LORE_LOG_WARNING(_owner_, _fmt_, ...)                  \
-    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Warning,                     \
+    Lore::Lore_Private::_private_log(CoreGame::Log::Type::Warning, \
                                      _owner_,                      \
                                      _fmt_,                        \
                                      ##__VA_ARGS__)
@@ -86,12 +86,12 @@ NS_LORE_END
 ////////////////////////////////////////////////////////////////////////////////
 // Log Macros - ONLY IN DEBUG                                                 //
 ////////////////////////////////////////////////////////////////////////////////
-#if defined(NDEBUG)
+#if defined(LORE_RELEASE)
     #define PVT_LORE_DLOG_DEBUG(_owner_, _fmt_, ...)   do {} while(0)
     #define PVT_LORE_DLOG_ERROR(_owner_, _fmt_, ...)   do {} while(0)
     #define PVT_LORE_DLOG_WARNING(_owner_, _fmt_, ...) do {} while(0)
 
-#else //defined(NDEBUG)
+#else //defined(LORE_RELEASE)
     #define PVT_LORE_DLOG_DEBUG(_owner_, _fmt_, ...) \
         PVT_LORE_LOG_DEBUG(_owner_, _fmt_, ##__VA_ARGS__)
 
@@ -101,6 +101,6 @@ NS_LORE_END
     #define PVT_LORE_DLOG_WARNING(_owner_, _fmt_, ...) \
         PVT_LORE_LOG_WARNING(_owner_, _fmt_, ##__VA_ARGS__)
 
-#endif //defined(NDEBUG)
+#endif //defined(LORE_RELEASE)
 
 #endif // __Lore_src_private_include_Log_h__ //
