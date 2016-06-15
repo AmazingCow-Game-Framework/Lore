@@ -1,6 +1,21 @@
 --------------------------------------------------------------------------------
 | Version 0.1.x                                                                |
 --------------------------------------------------------------------------------
+[Version 0.1.1] - Jun 15, 2016.
+-- General -- 
+    - Change from NDEBUG to LORE_RELEASE
+      This enable us to generate "NDEBUG" (for std stuff)
+      while have logs for Lore. When the we are ready
+      we can just use -DLORE_RELEASE to get rid of them.
+
+-- Sources -- 
+    src/private/include.log
+        - Cosmetic changes.
+        - Change from NDEBUG to LORE_RELEASE.
+        
+
+--------------------------------------------------------------------------------
+[Version 0.1.0] - Jun 12, 2016.
 -- General -- 
     - Finish the **very** basic implementation of Lore. 
       This is version used in Game_Kaboom.
