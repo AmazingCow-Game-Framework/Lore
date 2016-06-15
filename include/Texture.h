@@ -57,6 +57,7 @@ class Texture
     // Enums / Constants // Typedefs //
 public:
     typedef std::shared_ptr<Texture> SPtr;
+    typedef std::unique_ptr<Texture> UPtr;
 
     enum class Flip {
         None = 0,
@@ -88,7 +89,7 @@ public:
 
     // iVars //
 private:
-    SDL_Texture *m_pTexture;
+    SDL_Texture *m_pSDL_Texture;
     Vector2      m_size;
 };
 
