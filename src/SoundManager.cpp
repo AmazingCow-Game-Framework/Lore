@@ -58,11 +58,19 @@ USING_NS_COREGAME;
 const int SoundManager::kPlayForever = -1;
 const int SoundManager::kPlayOneTime =  0;
 
+//Get the values directly from SDL.
+const int SoundManager::kDefaultFrequency = MIX_DEFAULT_FREQUENCY;
+const int SoundManager::kDefaultFormat    = MIX_DEFAULT_FORMAT;
+const int SoundManager::kDefaultChannels  = MIX_DEFAULT_CHANNELS;
+const int SoundManager::kDefaultChunkSize = 4096;
+
+
 //Internal
 constexpr int   kMIX_FirstAvailableChannel = -1;
 constexpr int   kMIX_AllChannels           = -1;
 constexpr float kMIX_MaxVolume             = 128.0;
 constexpr int   kMIX_GetVolume             = -1;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Init / Shutdown                                                            //

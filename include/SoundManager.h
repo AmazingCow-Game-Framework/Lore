@@ -63,9 +63,15 @@ private:
 
     // Constants / Enums / Typedefs //
 public:
+    //Loops
     static const int kPlayForever;
     static const int kPlayOneTime;
 
+    //Default Stuff.
+    static const int kDefaultFrequency;
+    static const int kDefaultFormat;
+    static const int kDefaultChannels;
+    static const int kDefaultChunkSize;
 
 private:
     typedef std::map<std::string, EffectInfo> EffectMap;
@@ -83,10 +89,10 @@ private:
     // Init / Shutdown //
 public:
     void initialize(const std::string &searchPath,
-                    int    frequency,
-                    Uint16 format,
-                    int    channels,
-                    int    chunksize);
+                    int    frequency = kDefaultFrequency,
+                    Uint16 format    = kDefaultFormat,
+                    int    channels  = kDefaultChannels,
+                    int    chunksize = kDefaultChunkSize);
     void shutdown();
 
 
