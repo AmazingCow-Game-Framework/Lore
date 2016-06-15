@@ -47,6 +47,7 @@
 
 //std
 #include <memory> //Lore will need smart pointers...
+#include <utility> //std::forward
 
 //SDL
 #include <SDL2/SDL.h>
@@ -58,5 +59,19 @@
 #include "CoreGame.h"
 #include "CoreRandom.h"
 #include "CoreClock.h"
+
+
+NS_LORE_BEGIN
+
+//Taken from: https://herbsutter.com/gotw/_102/
+//This enable us to use the Lore::make_unique in C++11
+//If code is to be compiled in C++14 is better use the std version :D
+template<typename T, typename ...Args>
+std::unique_ptr<T> make_unique( Args&& ...args )
+{
+    return std::unique_ptr<T>( new T( std::forward<Args>(args)... ) );
+}
+
+NS_LORE_END
 
 #endif // __Lore_include_Lore_Utils_h__ //
