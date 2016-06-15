@@ -122,7 +122,8 @@ public:
     // Query Methods //
 public:
     bool intersects(const Rectangle &otherRect);
-
+    bool intersectionRect(const Rectangle &otherRect,
+                          Rectangle &outRect);
 
     // Operators //
 public:

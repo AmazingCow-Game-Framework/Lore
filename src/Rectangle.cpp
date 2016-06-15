@@ -40,6 +40,8 @@
 
 //Header
 #include "../include/Rectangle.h"
+//Lore
+#include "../include/SDLHelpers.h"
 
 //Usings
 USING_NS_LORE
@@ -216,6 +218,21 @@ bool Rectangle::intersects(const Rectangle &that)
            this->getLeft() < that.getRight  () &&
            that.getTop  () < this->getBottom() &&
            this->getTop () < that.getBottom ();
+}
+
+bool Rectangle::intersectionRect(const Rectangle &otherRect,
+                                 Rectangle &outRect)
+{
+    //COWTODO: This is very ugly... just a quick hack to keep the \
+    //         the Game_Frogger going... IMPLEMENT THIS CORRECTLY.
+    auto a = SDLHelpers::make_rect(*this);
+    auto b = SDLHelpers::make_rect(otherRect);
+    SDL_Rect o;
+
+    auto ret = SDL_IntersectRect(&a, &b, &o);
+    outRect = Rectangle(o.x, o.y, o.w, o.h);
+
+    return ret;
 }
 
 
