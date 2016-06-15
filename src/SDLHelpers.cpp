@@ -144,9 +144,15 @@ SDL_Texture* SDLHelpers::make_texture_free(SDL_Surface *surface)
 
     return texture;
 }
-SDL_Texture* SDLHelpers::make_texture_empty(int width  /* = 0 */,
-                                            int height /* = 0 */)
+SDL_Texture* SDLHelpers::make_texture_empty(int width  /* = 1 */,
+                                            int height /* = 1 */)
 {
+    COREGAME_ASSERT_ARGS(
+        width > 0 && height > 0,
+        "SDLHelpers::make_texture_empty - Size values are invalid: %d, %d",
+        width, height
+    );
+
     //COWTODO: Check if this is the correct way to get             \
     //         an empty texture. i.e. We shouldn't check           \
     //         the renderer first to get the pixel format and all?
@@ -155,6 +161,13 @@ SDL_Texture* SDLHelpers::make_texture_empty(int width  /* = 0 */,
                                      SDL_PIXELFORMAT_RGBA8888,
                                      SDL_TEXTUREACCESS_STATIC,
                                      width, height);
+
+    COREGAME_ASSERT_ARGS(
+        texture != nullptr,
+        "SDLHelpers::make_texture_empty - Failed to create texture with size: %d, %d - SDL_Error %s",
+        width, height,
+        SDL_GetError()
+    );
 
     return texture;
 }

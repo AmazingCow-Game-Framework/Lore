@@ -70,7 +70,7 @@ SDL_Color make_color(const Color &color);
 // Texture //
 SDL_Texture* load_texture_from_file(const std::string &filename);
 SDL_Texture* make_texture_free(SDL_Surface *surface);
-SDL_Texture* make_texture_empty(int width = 0, int height = 0);
+SDL_Texture* make_texture_empty(int width = 1, int height = 1);
 
 // Font //
 TTF_Font* load_font_from_file(const std::string &filename, int size);
