@@ -93,14 +93,15 @@ private:
 
     // iVars //
 private:
+    //String
     std::string m_string;
-
+    //Font / Texture
     Font::SPtr    m_pFont;
-    Texture::SPtr m_pCurrentTexture;
+    std::unique_ptr<Texture> m_pCurrentTexture;
     Rectangle     m_textureRect;
-
+    //Flip
     Texture::Flip m_flip;
-
+    //Colors
     Color m_fgColor;
     Color m_bgColor;
 };
