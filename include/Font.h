@@ -68,14 +68,14 @@ public:
 
     // Public Methods //
 public:
-    Texture::SPtr prepareTexture(const std::string &str,
+    Texture::UPtr prepareTexture(const std::string &str,
                                  const Color &fgColor,
                                  const Color &bgColor);
 
 
     // iVars //
 private:
-    TTF_Font *m_pFont;
+    TTF_Font *m_pTTF_Font;
 };
 
 NS_LORE_END

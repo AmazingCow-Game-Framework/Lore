@@ -51,22 +51,25 @@ USING_NS_LORE;
 
 // CTOR //
 Font::Font(TTF_Font *font) :
-    m_pFont(font)
+    m_pTTF_Font(font)
 {
     //Empty...
 }
 
 Font::~Font()
 {
-    COREGAME_DLOG(CoreGame::Log::Type::Debug4, "Lore::Font DTOR");
+    COREGAME_ASSERT(
+        m_pTTF_Font != nullptr,
+        "Font::~Font - Trying to delete a nullptr font"
+    );
 
-    TTF_CloseFont(m_pFont);
-    m_pFont = nullptr;
+    TTF_CloseFont(m_pTTF_Font);
+    m_pTTF_Font = nullptr;
 }
 
 
 // Public Methods //
-Texture::SPtr Font::prepareTexture(const std::string &str,
+Texture::UPtr Font::prepareTexture(const std::string &str,
                                    const Color &fgColor,
                                    const Color &bgColor)
 {
@@ -75,19 +78,20 @@ Texture::SPtr Font::prepareTexture(const std::string &str,
     //how to use it correctly
     PVT_LORE_UNUSED(bgColor);
 
-    if(str.empty())
-        return std::make_shared<Texture>(SDLHelpers::make_texture_empty());
+    COREGAME_ASSERT(
+        !str.empty(),
+        "Font::prepareTexture - Cannot prepare texture for empty strings..."
+    );
 
-
-    auto tmp_surface = TTF_RenderText_Solid(m_pFont,
+    auto tmp_surface = TTF_RenderText_Blended(m_pTTF_Font,
                                              str.c_str(),
                                              SDLHelpers::make_color(fgColor));
-                                             //{0xff, 0x0, 0xff, 0x05});
-                                             //SDLHelpers::make_color(bgColor));
+
+    //COWTODO: In future add options to set other blend modes.
     SDL_SetSurfaceBlendMode(tmp_surface, SDL_BLENDMODE_BLEND);
 
     auto sdl_texture = SDLHelpers::make_texture_free(tmp_surface);
     SDL_SetTextureBlendMode(sdl_texture, SDL_BLENDMODE_BLEND);
 
-    return std::make_shared<Texture>(sdl_texture);
+    return std::unique_ptr<Texture>(new Texture(sdl_texture));
 }

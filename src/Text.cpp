@@ -44,17 +44,27 @@
 #include <cstdarg>
 //Lore
 #include "../include/AssetsManager.h"
+#include "./private/include/Lore_Private_Utils.h"
+#include "./private/include/Log.h"
+#include "../include/SDLHelpers.h"
 
 //Usings
 USING_NS_LORE
 
+
 // CTOR //
 Text::Text() :
-    // m_string - Default initialized.
+    //String
+    // m_string - Default initialized
+    //Font / Texture
     m_pFont          (nullptr),
     m_pCurrentTexture(nullptr),
-    m_fgColor        (Color::White()),
-    m_bgColor        (Color::Transparent())
+    m_textureRect    (Lore::Rectangle::Empty()),
+    //Flip
+    m_flip(Texture::Flip::None),
+    //Colors
+    m_fgColor(Color::White      ()),
+    m_bgColor(Color::Transparent())
 {
     //Empty...
 }
@@ -70,7 +80,7 @@ Text::Text(const std::string &filename, int size) :
 //Draw
 void Text::draw()
 {
-    if(!getIsVisible())
+    if(!getIsVisible() || !m_pCurrentTexture)
         return;
 
     m_pCurrentTexture->draw(m_textureRect,
@@ -153,9 +163,18 @@ Rectangle Text::getBounds() const
 // Private Methods //
 void Text::calculate()
 {
-    m_pCurrentTexture = m_pFont->prepareTexture(m_string,
-                                                m_fgColor,
-                                                m_bgColor);
+    //Nothing to draw...
+    if(m_string.empty())
+    {
+        m_pCurrentTexture = nullptr;
+        m_textureRect     = Lore::Rectangle::Empty();
+    }
+    else
+    {
+        m_pCurrentTexture = m_pFont->prepareTexture(m_string,
+                                                    m_fgColor,
+                                                    m_bgColor);
 
-    m_textureRect.setSize(m_pCurrentTexture->getTextureSize());
+        m_textureRect.setSize(m_pCurrentTexture->getTextureSize());
+    }
 }

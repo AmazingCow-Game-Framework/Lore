@@ -210,19 +210,45 @@ float ITransformable::getScaleY() const
 //Origin
 void ITransformable::setOrigin(const Vector2 &origin)
 {
+    COREGAME_ASSERT_ARGS(
+        (origin.x >= 0 && origin.x <= 1) &&
+        (origin.y >= 0 && origin.y <= 1),
+        "ITransformable::setOrigin - Origin is out of range [0, 1] x: %.2f - y: %.2f",
+        origin.x, origin.y
+    );
+
     m_origin = origin;
 }
 void ITransformable::setOrigin(float x, float y)
 {
+    COREGAME_ASSERT_ARGS(
+        (x >= 0 && x <= 1) &&
+        (y >= 0 && y <= 1),
+        "ITransformable::setOrigin - Origin is out of range [0, 1] x: %.2f - y: %.2f",
+        x, y
+    );
+
     m_origin.x = x;
     m_origin.y = y;
 }
 void ITransformable::setOriginX(float x)
 {
+    COREGAME_ASSERT_ARGS(
+        (x >= 0 && x <= 1),
+        "ITransformable::setOriginX - Origin is out of range [0, 1] x: %.2f",
+        x
+    );
+
     m_origin.x = x;
 }
 void ITransformable::setOriginY(float y)
 {
+    COREGAME_ASSERT_ARGS(
+        (y >= 0 && y <= 1),
+        "ITransformable::setOriginY - Origin is out of range [0, 1] y: %.2f",
+        y
+    );
+
     m_origin.y = y;
 }
 

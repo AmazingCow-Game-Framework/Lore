@@ -55,12 +55,6 @@ public:
     virtual ~Scene() { /* Empty */ }
 
 
-    // Load / Unload //
-public:
-    virtual void load  () { /* Empty */ }
-    virtual void unload() { /* Empty */ }
-
-
     // Update / Draw / Handle Events //
 public:
     virtual void update(float /* dt */)

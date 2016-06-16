@@ -85,13 +85,10 @@ void GameManager::run(std::unique_ptr<Scene> scene)
     }
 }
 
+
 void GameManager::changeScene(std::unique_ptr<Scene> scene)
 {
-    if(m_pScene)
-        m_pScene->unload();
-
     m_pScene = std::move(scene);
-    m_pScene->load();
 }
 
 
