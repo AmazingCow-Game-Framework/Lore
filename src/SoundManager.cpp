@@ -41,6 +41,7 @@
 //Header
 #include "../include/SoundManager.h"
 //Lore
+#include "../include/AssetsManager.h"
 #include "../include/ErrorControl.h"
 //Lore_Private
 #include "./private/include/Lore_Private_Utils.h"
@@ -75,8 +76,7 @@ constexpr int   kMIX_GetVolume             = -1;
 ////////////////////////////////////////////////////////////////////////////////
 // Init / Shutdown                                                            //
 ////////////////////////////////////////////////////////////////////////////////
-void SoundManager::initialize(const std::string &searchPath,
-                              int    frequency,
+void SoundManager::initialize(int    frequency,
                               Uint16 format,
                               int    channels,
                               int    chunksize)
@@ -112,9 +112,6 @@ void SoundManager::initialize(const std::string &searchPath,
                 Mix_GetError()
         );
     }
-
-    //Update the search path.
-    setSearchPath(searchPath);
 }
 
 void SoundManager::shutdown()
@@ -188,7 +185,7 @@ float SoundManager::getMusicVolume() const
 void SoundManager::playEffect(const std::string &name,
                               int loopTimes /* = kPlayOneTime */)
 {
-    auto fullname   = fullpath(name);
+    auto fullname   = AssetsManager::instance()->fullpath(name);
     auto effectInfo = getEffectInfo(fullname);
 
     effectInfo.playChannel = Mix_PlayChannel(kMIX_FirstAvailableChannel,
@@ -198,7 +195,7 @@ void SoundManager::playEffect(const std::string &name,
 
 void SoundManager::stopEffect(const std::string &name)
 {
-    auto fullname   = fullpath(name);
+    auto fullname   = AssetsManager::instance()->fullpath(name);
     auto effectInfo = getEffectInfo(fullname);
 
     Mix_HaltChannel(effectInfo.playChannel);
@@ -228,24 +225,10 @@ void SoundManager::stopMusic()
 ////////////////////////////////////////////////////////////////////////////////
 // Load / Unload Methods                                                      //
 ////////////////////////////////////////////////////////////////////////////////
-//Query
-void SoundManager::setSearchPath(const std::string &path)
-{
-    m_searchPath = path;
-    if(m_searchPath.back() != '/')
-        m_searchPath += "/";
-}
-
-const std::string& SoundManager::getSearchPath() const
-{
-    return m_searchPath;
-}
-
-
 //Load
 void SoundManager::loadEffect(const std::string &name)
 {
-    auto fullname = fullpath(name);
+    auto fullname = AssetsManager::instance()->fullpath(name);
 
     PVT_LORE_DLOG_DEBUG(
         "SoundManager::loadEffect",
@@ -319,9 +302,4 @@ SoundManager::EffectInfo& SoundManager::getEffectInfo(const std::string &name)
 {
     //COWTODO: Handle cases that effect isn't loaded.
     return m_effectsMap[name];
-}
-
-std::string SoundManager::fullpath(const std::string &path)
-{
-    return m_searchPath + path;
 }

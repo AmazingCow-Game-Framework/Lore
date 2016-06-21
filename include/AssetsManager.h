@@ -75,6 +75,8 @@ private:
     // Init / Shutdown  //
 public:
     void initialize(const std::string& searchPath);
+    void initialize(const std::vector<std::string> &searchPaths);
+
     void shutdown();
 
 
@@ -83,13 +85,12 @@ public:
     Texture::SPtr getTexture(const std::string &filename);
     Font::SPtr    getFont   (const std::string &filename, int size);
 
+    std::string fullpath(const std::string &filename);
 
     // Private Functions //
 private:
     Texture::SPtr loadTexture(const std::string &filename);
     Font::SPtr    loadFont(const std::string &filename, int size);
-
-    std::string fullpath(const std::string &filename);
 
 
     // iVars //

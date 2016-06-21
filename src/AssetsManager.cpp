@@ -40,6 +40,12 @@
 
 //Header
 #include "../include/AssetsManager.h"
+//std
+#include <sys/types.h> //For stat(2)
+#include <sys/stat.h>  //For stat(2)
+#include <unistd.h>    //For stat(2)
+#include <errno.h>
+
 //Lore
 #include "../include/SDLHelpers.h"
 #include "../include/WindowManager.h"
@@ -48,12 +54,31 @@
 USING_NS_LORE;
 
 
-// Init / Shutdown  //
+////////////////////////////////////////////////////////////////////////////////
+// Init / Shutdown                                                            //
+////////////////////////////////////////////////////////////////////////////////
 void AssetsManager::initialize(const std::string& searchPath)
 {
-    m_searchPath = searchPath;
+    AssetsManager::initialize({searchPath});
+}
+
+void AssetsManager::initialize(const std::vector<std::string> &searchPaths)
+{
+    for(auto path : searchPaths)
+    {
+        struct stat status;
+        stat(path.c_str(), &status);
+
+        if(S_ISDIR(status.st_mode))
+        {
+            m_searchPath = path;
+            break;
+        }
+    }
+
     if(m_searchPath.back() != '/')
         m_searchPath += "/";
+
 
     //COWTODO: Check errors.
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
@@ -65,7 +90,9 @@ void AssetsManager::shutdown()
 }
 
 
-// Public Functions //
+////////////////////////////////////////////////////////////////////////////////
+// Public Functions                                                           //
+////////////////////////////////////////////////////////////////////////////////
 Texture::SPtr AssetsManager::getTexture(const std::string &filename)
 {
     auto it = m_texturesMap.find(filename);
@@ -84,8 +111,15 @@ Font::SPtr AssetsManager::getFont(const std::string &filename, int size)
     return it->second;
 }
 
+std::string AssetsManager::fullpath(const std::string &filename)
+{
+    return m_searchPath + filename;
+}
 
-// Private Functions //
+
+////////////////////////////////////////////////////////////////////////////////
+// Private Functions                                                          //
+////////////////////////////////////////////////////////////////////////////////
 Texture::SPtr AssetsManager::loadTexture(const std::string &filename)
 {
     auto sdlTexture = SDLHelpers::load_texture_from_file(fullpath(filename));
@@ -108,7 +142,3 @@ Font::SPtr AssetsManager::loadFont(const std::string &filename,
     return font;
 }
 
-std::string AssetsManager::fullpath(const std::string &filename)
-{
-    return m_searchPath + filename;
-}

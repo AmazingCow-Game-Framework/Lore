@@ -88,11 +88,11 @@ private:
 
     // Init / Shutdown //
 public:
-    void initialize(const std::string &searchPath,
-                    int    frequency = kDefaultFrequency,
+    void initialize(int    frequency = kDefaultFrequency,
                     Uint16 format    = kDefaultFormat,
                     int    channels  = kDefaultChannels,
                     int    chunksize = kDefaultChunkSize);
+
     void shutdown();
 
 
@@ -124,10 +124,6 @@ public:
 
     // Load / Unload Methods //
 public:
-    //Path
-    void setSearchPath(const std::string &path);
-    const std::string& getSearchPath() const;
-
     //Load
     void loadEffect(const std::string &name);
     void loadMusic(const std::string &name);
@@ -144,7 +140,6 @@ public:
     // Private Methods //
 private:
     EffectInfo& getEffectInfo(const std::string &name);
-    std::string fullpath(const std::string &path);
 
 
     // iVars //
