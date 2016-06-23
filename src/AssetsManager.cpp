@@ -59,7 +59,7 @@ USING_NS_LORE;
 ////////////////////////////////////////////////////////////////////////////////
 void AssetsManager::initialize(const std::string& searchPath)
 {
-    AssetsManager::initialize({searchPath});
+    AssetsManager::initialize(std::vector<std::string>{searchPath});
 }
 
 void AssetsManager::initialize(const std::vector<std::string> &searchPaths)
