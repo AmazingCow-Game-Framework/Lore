@@ -44,6 +44,7 @@
 #include "../include/WindowManager.h"
 #include "../include/InputManager.h"
 
+
 //Usings
 USING_NS_LORE;
 
@@ -68,21 +69,24 @@ void GameManager::run(std::unique_ptr<Scene> scene)
 
     //Framerate stuff.
     float  delayTime  = (1000.0f / m_targetFPS);
-    Uint32 frameStart = 0;
-    Uint32 frameTime  = 0;
+    float  frameTime  = (   1.0f / m_targetFPS);
+
+    Uint32 frameStart    = 0;
+    Uint32 frameDuration = 0;
 
     while(m_running)
     {
         frameStart = SDL_GetTicks();
 
         handleEvents();
-        update(1.0f / m_targetFPS);
+        update(frameTime);
         draw();
 
-        frameTime = SDL_GetTicks() - frameStart;
-        if(frameTime < delayTime)
-            SDL_Delay(static_cast<Uint32>(delayTime - frameTime));
+        frameDuration = SDL_GetTicks() - frameStart;
+        if(frameDuration < delayTime)
+            SDL_Delay(static_cast<Uint32>(delayTime - frameDuration));
     }
+}
 }
 
 
