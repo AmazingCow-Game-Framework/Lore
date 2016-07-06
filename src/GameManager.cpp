@@ -87,7 +87,6 @@ void GameManager::run(std::unique_ptr<Scene> scene)
             SDL_Delay(static_cast<Uint32>(delayTime - frameDuration));
     }
 }
-}
 
 
 void GameManager::changeScene(std::unique_ptr<Scene> scene)
