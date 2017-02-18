@@ -45,10 +45,14 @@
 #include <sys/stat.h>  //For stat(2)
 #include <unistd.h>    //For stat(2)
 #include <errno.h>
-
+//std experimental
+#include <experimental/filesystem>
 //Lore
 #include "../include/SDLHelpers.h"
 #include "../include/WindowManager.h"
+//Lore_Private
+#include "./private/include/Lore_Private_Utils.h"
+#include "./private/include/Log.h"
 
 //Usings
 USING_NS_LORE;
@@ -64,13 +68,31 @@ void AssetsManager::initialize(const std::string& searchPath)
 
 void AssetsManager::initialize(const std::vector<std::string> &searchPaths)
 {
+    PVT_LORE_DLOG_DEBUG(
+        "AssetsManager::initialize",
+        "Search Paths size: (%d)",
+        searchPaths.size()
+    );
+
     for(auto path : searchPaths)
     {
         struct stat status;
         stat(path.c_str(), &status);
 
+        PVT_LORE_DLOG_DEBUG(
+            "AssetsManager::initialize",
+            "Checking path: (%s)",
+            path.c_str()
+        );
+
         if(S_ISDIR(status.st_mode))
         {
+            PVT_LORE_DLOG_DEBUG(
+                "AssetsManager::initialize",
+                "Found valid search path: (%s)",
+                path.c_str()
+            );
+
             m_searchPath = path;
             break;
         }
@@ -111,9 +133,25 @@ Font::SPtr AssetsManager::getFont(const std::string &filename, int size)
     return it->second;
 }
 
-std::string AssetsManager::fullpath(const std::string &filename)
+std::string AssetsManager::fullpath(const std::string &filename) const
 {
     return m_searchPath + filename;
+}
+
+
+std::vector<std::string> AssetsManager::checkFilesExists(
+    const std::vector<std::string> &filesList) const
+{
+    std::vector<std::string> missingFiles;
+    missingFiles.reserve(filesList.size());
+
+    for(auto &filename : filesList)
+    {
+        if(!std::experimental::filesystem::exists(fullpath(filename)))
+            missingFiles.push_back(filename);
+    }
+
+    return missingFiles;
 }
 
 
@@ -122,6 +160,12 @@ std::string AssetsManager::fullpath(const std::string &filename)
 ////////////////////////////////////////////////////////////////////////////////
 Texture::SPtr AssetsManager::loadTexture(const std::string &filename)
 {
+    PVT_LORE_DLOG_DEBUG(
+        "AssetsManager::loadTexture",
+        "Filename: (%s)",
+        filename.c_str()
+    );
+
     auto sdlTexture = SDLHelpers::load_texture_from_file(fullpath(filename));
     auto texture    = std::make_shared<Texture>(sdlTexture);
 
@@ -133,6 +177,13 @@ Texture::SPtr AssetsManager::loadTexture(const std::string &filename)
 Font::SPtr AssetsManager::loadFont(const std::string &filename,
                                    int size)
 {
+    PVT_LORE_DLOG_DEBUG(
+        "AssetsManager::loadFont",
+        "Filename: (%s) - Size: (%d)",
+        filename.c_str(),
+        size
+    );
+
     auto sdlFont   = SDLHelpers::load_font_from_file(fullpath(filename), size);
     auto font      = std::make_shared<Font>(sdlFont);
     auto fontValue = std::make_pair(filename, size);

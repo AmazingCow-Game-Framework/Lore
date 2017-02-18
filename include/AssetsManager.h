@@ -85,7 +85,11 @@ public:
     Texture::SPtr getTexture(const std::string &filename);
     Font::SPtr    getFont   (const std::string &filename, int size);
 
-    std::string fullpath(const std::string &filename);
+    std::string fullpath(const std::string &filename) const;
+
+    std::vector<std::string> checkFilesExists(
+        const std::vector<std::string> &filesList) const;
+
 
     // Private Functions //
 private:
