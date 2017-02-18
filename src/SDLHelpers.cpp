@@ -186,4 +186,18 @@ TTF_Font* SDLHelpers::load_font_from_file(const std::string &filename, int size)
     return font;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Message Box                                                                //
+////////////////////////////////////////////////////////////////////////////////
+void SDLHelpers::MessageBox_Error(
+    const std::string &title,
+    const std::string &msg)
+{
+    SDL_ShowSimpleMessageBox(
+        SDL_MESSAGEBOX_ERROR,
+        title.c_str(),
+        msg.c_str  (),
+        nullptr
+    );
+}
 NS_LORE_END

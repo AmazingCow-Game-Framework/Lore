@@ -75,6 +75,8 @@ SDL_Texture* make_texture_empty(int width = 1, int height = 1);
 // Font //
 TTF_Font* load_font_from_file(const std::string &filename, int size);
 
+// Message Box //
+void MessageBox_Error(const std::string &title, const std::string &msg);
 
 }; //namespace SDLHelpers
 NS_LORE_END
