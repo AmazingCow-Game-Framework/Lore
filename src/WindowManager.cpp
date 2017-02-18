@@ -5,7 +5,7 @@
 //            ███  █  █  ███        WindowManager.cpp                         //
 //            █ █        █ █        Lore                                      //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2017                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -40,6 +40,10 @@
 
 //Header
 #include "../include/WindowManager.h"
+//Lore
+#include "../include/AssetsManager.h"
+#include "../include/SDLHelpers.h"
+
 
 //Usings
 USING_NS_LORE
@@ -146,4 +150,18 @@ void WindowManager::setClearColor(const Color &color)
 const Color& WindowManager::getClearColor() const
 {
     return m_clearColor;
+}
+
+//Icon
+void WindowManager::setIcon(const std::string &filename)
+{
+    auto full_filename = AssetsManager::instance()->fullpath(filename);
+    auto pSurface      = SDLHelpers::load_surface_from_file(full_filename);
+
+
+    //COWTODO: Check errors.
+
+    SDL_SetWindowIcon(m_pWindow, pSurface);
+
+    SDL_FreeSurface(pSurface);
 }

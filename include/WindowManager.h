@@ -94,6 +94,9 @@ public:
     void setClearColor(const Color &color);
     const Color& getClearColor() const;
 
+    //Icon
+    void setIcon(const std::string &filename);
+
 
     // iVars //
 private:
