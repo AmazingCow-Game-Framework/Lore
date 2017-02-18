@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 | Version 0.1.x                                                                |
 --------------------------------------------------------------------------------
+[Version 0.1.6] - Fev 18, 2017
+-- General --
+    Add way to check if a given set of files are
+    present in filesystem.
+
+
+--------------------------------------------------------------------------------
 [Version 0.1.5] - Fev 17, 2017
 -- General --
     Add MessageBox function to show critical errors.
