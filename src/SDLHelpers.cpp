@@ -144,6 +144,7 @@ SDL_Texture* SDLHelpers::make_texture_free(SDL_Surface *surface)
 
     return texture;
 }
+
 SDL_Texture* SDLHelpers::make_texture_empty(int width  /* = 1 */,
                                             int height /* = 1 */)
 {
@@ -170,6 +171,14 @@ SDL_Texture* SDLHelpers::make_texture_empty(int width  /* = 1 */,
     );
 
     return texture;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Surface                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+SDL_Surface* SDLHelpers::load_surface_from_file(const std::string &filename)
+{
+    return IMG_Load(filename.c_str());
 }
 
 ////////////////////////////////////////////////////////////////////////////////

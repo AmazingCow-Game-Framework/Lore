@@ -72,6 +72,9 @@ SDL_Texture* load_texture_from_file(const std::string &filename);
 SDL_Texture* make_texture_free(SDL_Surface *surface);
 SDL_Texture* make_texture_empty(int width = 1, int height = 1);
 
+// Surface //
+SDL_Surface* load_surface_from_file(const std::string &filename);
+
 // Font //
 TTF_Font* load_font_from_file(const std::string &filename, int size);
 
