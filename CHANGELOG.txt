@@ -1,6 +1,13 @@
 --------------------------------------------------------------------------------
 | Version 0.1.x                                                                |
 --------------------------------------------------------------------------------
+[Version 0.1.7] - Fev 18, 2017
+-- General --
+    - Add method to set the game icon.
+    - Add method to load surface.
+    - Update the copyright years.
+
+
 [Version 0.1.6] - Fev 18, 2017
 -- General --
     Add way to check if a given set of files are
