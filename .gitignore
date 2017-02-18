@@ -1,3 +1,4 @@
+*.o
 codeblocks/main.cpp
 codeblocks/assets/
 game/
