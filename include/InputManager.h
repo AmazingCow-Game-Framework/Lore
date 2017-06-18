@@ -5,7 +5,7 @@
 //            ███  █  █  ███        InputManager.h                            //
 //            █ █        █ █        Lore                                      //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2017                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -41,6 +41,9 @@
 #ifndef __Lore_include_InputManager_h__
 #define __Lore_include_InputManager_h__
 
+//std
+#include <map>
+#include <set>
 //Lore
 #include "Lore_Utils.h"
 
@@ -52,7 +55,8 @@ class InputManager
     // Enums //
 public:
     typedef Uint8 KeyScanCodeType;
-
+    typedef std::map<std::string, std::set<KeyScanCodeType>> KeybindingsMap;
+    typedef std::initializer_list<KeyScanCodeType> KeyScanCodeTypeInitList;
 
     // Singleton //
 public:
@@ -72,6 +76,9 @@ public:
 public:
     void update();
 
+
+    // Key "atomics" methods //
+public:
     bool isKeyDown(KeyScanCodeType scanCode);
     bool isKeyUp  (KeyScanCodeType scanCode);
 
@@ -81,12 +88,35 @@ public:
     bool isKeyClick(KeyScanCodeType scanCode);
 
 
+    // Key bindings methods //
+public:
+    void assignKeyBindings(
+        const std::string &keybinding,
+        const KeyScanCodeTypeInitList &keys);
+
+    //Empty list means that is to remove all bidings.
+    void removeKeyBindings(
+        const std::string &keybinding,
+        const std::initializer_list<KeyScanCodeType> &keys);
+
+
+    bool isKeyDown(const std::string &keybinding);
+    bool isKeyUp  (const std::string &keybinding);
+
+    bool wasKeyDown(const std::string &keybinding);
+    bool wasKeyUp  (const std::string &keybinding);
+
+    bool isKeyClick(const std::string &keybinding);
+
+
     // iVars //
 private:
     KeyScanCodeType *m_pPrevKeys;
     KeyScanCodeType *m_pCurrKeys;
 
     int m_numKeys;
+
+    KeybindingsMap m_keybindingsMap;
 };
 
 NS_LORE_END

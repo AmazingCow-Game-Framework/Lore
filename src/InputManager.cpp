@@ -5,7 +5,7 @@
 //            ███  █  █  ███        InputManager.cpp                          //
 //            █ █        █ █        Lore                                      //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2017                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -42,12 +42,15 @@
 #include "../include/InputManager.h"
 //std
 #include <cstring>
+#include <algorithm>
 
 //Usings
 USING_NS_LORE;
 
 
-// Init / Shutdown  //
+////////////////////////////////////////////////////////////////////////////////
+// Init / Shutdown                                                            //
+////////////////////////////////////////////////////////////////////////////////
 void InputManager::initialize()
 {
     m_pCurrKeys = const_cast<Uint8 *>(SDL_GetKeyboardState(&m_numKeys));
@@ -60,32 +63,146 @@ void InputManager::shutdown()
 }
 
 
-// Public Methods //
+////////////////////////////////////////////////////////////////////////////////
+// Public Methods                                                             //
+////////////////////////////////////////////////////////////////////////////////
 void InputManager::update()
 {
     std::memcpy(m_pPrevKeys, m_pCurrKeys, sizeof(Uint8) * m_numKeys);
     m_pCurrKeys = const_cast<Uint8 *>(SDL_GetKeyboardState(nullptr));
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Key "atomics" methods                                                      //
+////////////////////////////////////////////////////////////////////////////////
 bool InputManager::isKeyDown(KeyScanCodeType scanCode)
 {
     return m_pCurrKeys[scanCode];
 }
+
 bool InputManager::isKeyUp(KeyScanCodeType scanCode)
 {
     return !m_pCurrKeys[scanCode];
 }
 
+
 bool InputManager::wasKeyDown(KeyScanCodeType scanCode)
 {
     return m_pPrevKeys[scanCode] && isKeyUp(scanCode);
 }
+
 bool InputManager::wasKeyUp(KeyScanCodeType scanCode)
 {
     return !m_pPrevKeys[scanCode] && isKeyDown(scanCode);
 }
 
+
 bool InputManager::isKeyClick(KeyScanCodeType scanCode)
 {
     return isKeyUp(scanCode) && wasKeyDown(scanCode);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Key bindings methods                                                       //
+////////////////////////////////////////////////////////////////////////////////
+void InputManager::assignKeyBindings(
+    const std::string             &keybinding,
+    const KeyScanCodeTypeInitList &keys)
+{
+    COREGAME_ASSERT(
+        keys.size() != 0,
+        "Keys cannot be empty"
+    );
+
+    m_keybindingsMap[keybinding].insert(keys);
+}
+
+//Empty list means that is to remove all bidings.
+void InputManager::removeKeyBindings(
+    const std::string &keybinding,
+    const std::initializer_list<KeyScanCodeType> &keys)
+{
+    //COWTODO: implement...
+}
+
+template <typename PREDICATE_T>
+bool TEST(
+    const std::string                  &keybinding,
+    InputManager::KeybindingsMap &keymap,
+    PREDICATE_T predicate)
+{
+     //Check it keybinding valid.
+    COREGAME_ONLY_IN_DEBUG({
+        auto it = keymap.find(keybinding);
+        COREGAME_ASSERT_ARGS(
+            it != keymap.end(),
+            "Keybinding (%s) was not found.",
+            keybinding.c_str()
+        );
+    });
+
+    const auto &keys_set = keymap[keybinding];
+    return std::any_of(
+        keys_set.begin(),
+        keys_set.end  (),
+        predicate
+    );
+}
+
+bool InputManager::isKeyDown(const std::string &keybinding)
+{
+    return TEST(
+        keybinding,
+        m_keybindingsMap,
+         [this](const KeyScanCodeType &keyCode){
+            return isKeyDown(keyCode);
+        }
+    );
+}
+
+bool InputManager::isKeyUp(const std::string &keybinding)
+{
+    return TEST(
+        keybinding,
+        m_keybindingsMap,
+         [this](const KeyScanCodeType &keyCode){
+            return isKeyUp(keyCode);
+        }
+    );
+}
+
+
+bool InputManager::wasKeyDown(const std::string &keybinding)
+{
+    return TEST(
+        keybinding,
+        m_keybindingsMap,
+         [this](const KeyScanCodeType &keyCode){
+            return wasKeyDown(keyCode);
+        }
+    );
+}
+
+bool InputManager::wasKeyUp(const std::string &keybinding)
+{
+    return TEST(
+        keybinding,
+        m_keybindingsMap,
+         [this](const KeyScanCodeType &keyCode){
+            return wasKeyUp(keyCode);
+        }
+    );
+}
+
+bool InputManager::isKeyClick(const std::string &keybinding)
+{
+    return TEST(
+        keybinding,
+        m_keybindingsMap,
+         [this](const KeyScanCodeType &keyCode){
+            return isKeyClick(keyCode);
+        }
+    );
 }
