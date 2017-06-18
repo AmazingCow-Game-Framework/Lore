@@ -5,7 +5,7 @@
 //            ███  █  █  ███        SoundManager.h                            //
 //            █ █        █ █        Lore                                      //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2017                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -100,6 +100,8 @@ public:
 public:
     //Master
     void setMasterVolume(float vol);
+    void toggleMute();
+    bool isMuted() const;
 
     //Effect
     void  setEffectsVolume(float vol);
@@ -149,6 +151,7 @@ private:
     EffectMap m_effectsMap;
     MusicMap  m_musicsMap;
 
+    bool m_muted;
 };
 
 NS_LORE_END

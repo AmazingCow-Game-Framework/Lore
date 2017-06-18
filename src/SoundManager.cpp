@@ -5,7 +5,7 @@
 //            ███  █  █  ███        SoundManager.cpp                          //
 //            █ █        █ █        Lore                                      //
 //             ████████████                                                   //
-//           █              █       Copyright (c) 2016                        //
+//           █              █       Copyright (c) 2016, 2017                  //
 //          █     █    █     █      AmazingCow - www.AmazingCow.com           //
 //          █     █    █     █                                                //
 //           █              █       N2OMatt - n2omatt@amazingcow.com          //
@@ -112,6 +112,8 @@ void SoundManager::initialize(int    frequency,
                 Mix_GetError()
         );
     }
+
+    m_muted = false;
 }
 
 void SoundManager::shutdown()
@@ -134,6 +136,16 @@ void SoundManager::setMasterVolume(float vol)
 
     setEffectsVolume(vol);
     setMusicVolume  (vol);
+}
+
+void SoundManager::toggleMute()
+{
+    m_muted = !m_muted;
+}
+
+bool SoundManager::isMuted() const
+{
+    return m_muted;
 }
 
 //Effect
@@ -185,6 +197,9 @@ float SoundManager::getMusicVolume() const
 void SoundManager::playEffect(const std::string &name,
                               int loopTimes /* = kPlayOneTime */)
 {
+    if(m_muted)
+        return;
+
     auto fullname   = AssetsManager::instance()->fullpath(name);
     auto effectInfo = getEffectInfo(fullname);
 
